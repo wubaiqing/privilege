@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "RenderTabBarViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -17,6 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 设置Window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // 渲染UITabBar基础页面
+    RenderTabBarViewController *renderTabBar = [[RenderTabBarViewController alloc] init];
+    self.window.rootViewController = renderTabBar;
+    
+    // 显示视图
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

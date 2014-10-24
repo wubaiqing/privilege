@@ -89,6 +89,7 @@
         // 添加TabBar图片
         NSString *imageName = [NSString stringWithFormat:@"tabbar_button_hightlight_%d", i];
         [button setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        [button setFrame:CGRectMake(49/2 -  30/2, 0, 30, 30)];
         [button addTarget:self action:@selector(clickTabBar:) forControlEvents:UIControlEventTouchUpInside];
         [tabBarView addSubview:button];
         

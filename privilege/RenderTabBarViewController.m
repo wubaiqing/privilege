@@ -89,7 +89,7 @@
         // 添加TabBar图片
         NSString *imageName = [NSString stringWithFormat:@"tabbar_button_hightlight_%d", i];
         [button setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        [button setFrame:CGRectMake(49/2 -  30/2, 0, 30, 30)];
+        [button setFrame:CGRectMake(80/2 -  30/2, 0, 30, 30)];
         [button addTarget:self action:@selector(clickTabBar:) forControlEvents:UIControlEventTouchUpInside];
         [tabBarView addSubview:button];
         
@@ -98,6 +98,7 @@
         [label setFont:[UIFont fontWithName:@"Helvetica" size:11.0]];
         label.text = [tabBarNames objectAtIndex:i];
         [label setTextAlignment:NSTextAlignmentCenter];
+        [label setTextColor:[UIColor redColor]];
         [tabBarView addSubview:label];
         
         // 添加到UITabBarController中

@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C19E74619FD42CD00DC05C3 /* 居家.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E73C19FD42CD00DC05C3 /* 居家.png */; };
+		5C19E74719FD42CD00DC05C3 /* 美容护肤.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E73D19FD42CD00DC05C3 /* 美容护肤.png */; };
+		5C19E74819FD42CD00DC05C3 /* 美食.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E73E19FD42CD00DC05C3 /* 美食.png */; };
+		5C19E74919FD42CD00DC05C3 /* 母婴.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E73F19FD42CD00DC05C3 /* 母婴.png */; };
+		5C19E74A19FD42CD00DC05C3 /* 男装.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74019FD42CD00DC05C3 /* 男装.png */; };
+		5C19E74B19FD42CD00DC05C3 /* 女装.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74119FD42CD00DC05C3 /* 女装.png */; };
+		5C19E74C19FD42CD00DC05C3 /* 配饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74219FD42CD00DC05C3 /* 配饰.png */; };
+		5C19E74D19FD42CD00DC05C3 /* 数码家电.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74319FD42CD00DC05C3 /* 数码家电.png */; };
+		5C19E74E19FD42CD00DC05C3 /* 文体.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74419FD42CD00DC05C3 /* 文体.png */; };
+		5C19E74F19FD42CD00DC05C3 /* 鞋包.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74519FD42CD00DC05C3 /* 鞋包.png */; };
 		5C48E3A419F10AA30007B62E /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48E39419F10AA30007B62E /* AFNetworkActivityIndicatorManager.m */; };
 		5C48E3A519F10AA30007B62E /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48E39619F10AA30007B62E /* UIActivityIndicatorView+AFNetworking.m */; };
 		5C48E3A619F10AA30007B62E /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48E39819F10AA30007B62E /* UIAlertView+AFNetworking.m */; };
@@ -71,6 +81,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C19E73C19FD42CD00DC05C3 /* 居家.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "居家.png"; sourceTree = "<group>"; };
+		5C19E73D19FD42CD00DC05C3 /* 美容护肤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美容护肤.png"; sourceTree = "<group>"; };
+		5C19E73E19FD42CD00DC05C3 /* 美食.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美食.png"; sourceTree = "<group>"; };
+		5C19E73F19FD42CD00DC05C3 /* 母婴.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "母婴.png"; sourceTree = "<group>"; };
+		5C19E74019FD42CD00DC05C3 /* 男装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男装.png"; sourceTree = "<group>"; };
+		5C19E74119FD42CD00DC05C3 /* 女装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "女装.png"; sourceTree = "<group>"; };
+		5C19E74219FD42CD00DC05C3 /* 配饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "配饰.png"; sourceTree = "<group>"; };
+		5C19E74319FD42CD00DC05C3 /* 数码家电.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数码家电.png"; sourceTree = "<group>"; };
+		5C19E74419FD42CD00DC05C3 /* 文体.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "文体.png"; sourceTree = "<group>"; };
+		5C19E74519FD42CD00DC05C3 /* 鞋包.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "鞋包.png"; sourceTree = "<group>"; };
 		5C48E39319F10AA30007B62E /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5C48E39419F10AA30007B62E /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		5C48E39519F10AA30007B62E /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -175,6 +195,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C19E73B19FD42BB00DC05C3 /* Categorys */ = {
+			isa = PBXGroup;
+			children = (
+				5C19E73C19FD42CD00DC05C3 /* 居家.png */,
+				5C19E73D19FD42CD00DC05C3 /* 美容护肤.png */,
+				5C19E73E19FD42CD00DC05C3 /* 美食.png */,
+				5C19E73F19FD42CD00DC05C3 /* 母婴.png */,
+				5C19E74019FD42CD00DC05C3 /* 男装.png */,
+				5C19E74119FD42CD00DC05C3 /* 女装.png */,
+				5C19E74219FD42CD00DC05C3 /* 配饰.png */,
+				5C19E74319FD42CD00DC05C3 /* 数码家电.png */,
+				5C19E74419FD42CD00DC05C3 /* 文体.png */,
+				5C19E74519FD42CD00DC05C3 /* 鞋包.png */,
+			);
+			name = Categorys;
+			sourceTree = "<group>";
+		};
 		5C48E39119F10A8E0007B62E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +338,7 @@
 		5CA414DF19EBE44700B72707 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C19E73B19FD42BB00DC05C3 /* Categorys */,
 				5CCEF29E19F0C27800CC52FE /* TabBarButtonList */,
 				5CA414E019EBE45100B72707 /* RootView */,
 			);
@@ -463,10 +501,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C19E74A19FD42CD00DC05C3 /* 男装.png in Resources */,
+				5C19E74919FD42CD00DC05C3 /* 母婴.png in Resources */,
 				5CA5388A19F949DC002FEF8B /* tabbar_button_3.png in Resources */,
 				5C67F9BD19F0FB560038AF00 /* root_top_button_3@2x.png in Resources */,
+				5C19E74719FD42CD00DC05C3 /* 美容护肤.png in Resources */,
 				5C67F9BB19F0FB560038AF00 /* root_top_button_1@2x.png in Resources */,
+				5C19E74C19FD42CD00DC05C3 /* 配饰.png in Resources */,
 				5CA5388019F94992002FEF8B /* tabbar_button_hightlight_1.png in Resources */,
+				5C19E74619FD42CD00DC05C3 /* 居家.png in Resources */,
+				5C19E74F19FD42CD00DC05C3 /* 鞋包.png in Resources */,
+				5C19E74D19FD42CD00DC05C3 /* 数码家电.png in Resources */,
 				5C48E3EA19F136140007B62E /* top_banner_0@2x.png in Resources */,
 				5CA5387F19F94992002FEF8B /* tabbar_button_hightlight_0.png in Resources */,
 				5C67F9BA19F0FB560038AF00 /* root_top_button_0@2x.png in Resources */,
@@ -475,7 +520,10 @@
 				5CA5388819F949DC002FEF8B /* tabbar_button_1.png in Resources */,
 				5CA414BB19EBDAAE00B72707 /* Main.storyboard in Resources */,
 				5CA5388E19F94CD9002FEF8B /* category@2x.png in Resources */,
+				5C19E74E19FD42CD00DC05C3 /* 文体.png in Resources */,
 				5CA5388719F949DC002FEF8B /* tabbar_button_0.png in Resources */,
+				5C19E74B19FD42CD00DC05C3 /* 女装.png in Resources */,
+				5C19E74819FD42CD00DC05C3 /* 美食.png in Resources */,
 				5CA414C019EBDAAE00B72707 /* LaunchScreen.xib in Resources */,
 				5C48E3EB19F136140007B62E /* top_banner_1@2x.png in Resources */,
 				5C67F9BC19F0FB560038AF00 /* root_top_button_2@2x.png in Resources */,

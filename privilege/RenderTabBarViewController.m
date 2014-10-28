@@ -94,7 +94,7 @@
         [tabBarView addSubview:button];
         
         // 添加TabBar底部按钮
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, tabBarTextMargin, 80, 8)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 32 , 80, 8)];
         [label setFont:[UIFont fontWithName:@"Helvetica" size:11.0]];
         label.text = [tabBarNames objectAtIndex:i];
         [label setTextAlignment:NSTextAlignmentCenter];

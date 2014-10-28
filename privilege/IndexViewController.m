@@ -9,6 +9,7 @@
 #import "IndexViewController.h"
 #import "CategoryViewController.h"
 #import "AFNetworking.h"
+#import "Goods.h"
 
 @interface IndexViewController ()
 {
@@ -48,8 +49,23 @@
     
     [manager GET:@"http://www.meipin.com/api/iphone" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSArray *listArray = [responseObject objectForKey:@"data"];
-        NSLog(@"%@", listArray);
+        NSArray *listArray = responseObject[@"data"];
+        
+        for (int i = 0; i < listArray.count; i++) {
+            NSDictionary *listDic = [listArray objectAtIndex:i];
+            // 设置Model
+            Goods *goods = [[Goods alloc] init];
+            goods.tbId = listDic[@"tbId"];
+            goods.title = listDic[@"title"];
+            goods.catId = listDic[@"catId"];
+            goods.clickUrl = listDic[@"click_url"];
+            goods.price = listDic[@"price"];
+            goods.originPrice = listDic[@"originPrice"];
+            
+            
+            
+            
+        }
         
         
         

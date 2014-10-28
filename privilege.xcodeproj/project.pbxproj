@@ -17,6 +17,7 @@
 		5C19E74D19FD42CD00DC05C3 /* 数码家电.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74319FD42CD00DC05C3 /* 数码家电.png */; };
 		5C19E74E19FD42CD00DC05C3 /* 文体.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74419FD42CD00DC05C3 /* 文体.png */; };
 		5C19E74F19FD42CD00DC05C3 /* 鞋包.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E74519FD42CD00DC05C3 /* 鞋包.png */; };
+		5C31002F19FF3A0900EBF231 /* Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C31002E19FF3A0900EBF231 /* Goods.m */; };
 		5C48E3A419F10AA30007B62E /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48E39419F10AA30007B62E /* AFNetworkActivityIndicatorManager.m */; };
 		5C48E3A519F10AA30007B62E /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48E39619F10AA30007B62E /* UIActivityIndicatorView+AFNetworking.m */; };
 		5C48E3A619F10AA30007B62E /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48E39819F10AA30007B62E /* UIAlertView+AFNetworking.m */; };
@@ -91,6 +92,8 @@
 		5C19E74319FD42CD00DC05C3 /* 数码家电.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数码家电.png"; sourceTree = "<group>"; };
 		5C19E74419FD42CD00DC05C3 /* 文体.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "文体.png"; sourceTree = "<group>"; };
 		5C19E74519FD42CD00DC05C3 /* 鞋包.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "鞋包.png"; sourceTree = "<group>"; };
+		5C31002D19FF3A0900EBF231 /* Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goods.h; sourceTree = "<group>"; };
+		5C31002E19FF3A0900EBF231 /* Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goods.m; sourceTree = "<group>"; };
 		5C48E39319F10AA30007B62E /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5C48E39419F10AA30007B62E /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		5C48E39519F10AA30007B62E /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -212,6 +215,15 @@
 			name = Categorys;
 			sourceTree = "<group>";
 		};
+		5C31002C19FF39EA00EBF231 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C31002D19FF3A0900EBF231 /* Goods.h */,
+				5C31002E19FF3A0900EBF231 /* Goods.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		5C48E39119F10A8E0007B62E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,8 +312,9 @@
 				5CA414B419EBDAAE00B72707 /* AppDelegate.m */,
 				5CA414B919EBDAAE00B72707 /* Main.storyboard */,
 				5CA414BC19EBDAAE00B72707 /* Images.xcassets */,
-				5CA414BE19EBDAAE00B72707 /* LaunchScreen.xib */,
 				5CA414E119EBE46000B72707 /* Controllers */,
+				5C31002C19FF39EA00EBF231 /* Models */,
+				5CA414BE19EBDAAE00B72707 /* LaunchScreen.xib */,
 				5CA414AF19EBDAAE00B72707 /* Supporting Files */,
 			);
 			path = privilege;
@@ -560,6 +573,7 @@
 				5C48E3A819F10AA30007B62E /* UIImageView+AFNetworking.m in Sources */,
 				5C48E3AB19F10AA30007B62E /* UIWebView+AFNetworking.m in Sources */,
 				5C48E3C419F10ABC0007B62E /* AFSecurityPolicy.m in Sources */,
+				5C31002F19FF3A0900EBF231 /* Goods.m in Sources */,
 				5CA414DC19EBE25B00B72707 /* GuangViewController.m in Sources */,
 				5C48E3A719F10AA30007B62E /* UIButton+AFNetworking.m in Sources */,
 				5CA414B519EBDAAE00B72707 /* AppDelegate.m in Sources */,

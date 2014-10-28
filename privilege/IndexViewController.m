@@ -44,18 +44,18 @@
 
 - (void) loadBody
 {
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:@"http://www.meipin.com/api/iphone" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//                NSString *JSONString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//                        NSLog(@"success:%@", JSONString);
-//        NSLog(@"%@", JSONString);
-//        
-////        NSLog(@"JSON: %@", responseObject);
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:@"http://www.meipin.com/api/iphone" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSArray *listArray = [responseObject objectForKey:@"data"];
+        NSLog(@"%@", listArray);
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 
 }
 

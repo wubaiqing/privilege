@@ -67,7 +67,6 @@
     customTabBarImageView.userInteractionEnabled = YES;
     
     // 偏移量
-    CGFloat tabBarTextMargin = tabBarImageMargin + tabBarImageHeight;
     CGFloat tabBarViewCoordinate= 0;
     
     NSArray *tabBarNames = @[@"首页", @"值得逛", @"最新", @"个人中心"];
@@ -89,12 +88,12 @@
         // 添加TabBar图片
         NSString *imageName = [NSString stringWithFormat:@"tabbar_button_hightlight_%d", i];
         [button setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        [button setFrame:CGRectMake(80/2 -  30/2, 0, 30, 30)];
+        [button setFrame:CGRectMake(80/2 -  30/2, 3, 30, 30)];
         [button addTarget:self action:@selector(clickTabBar:) forControlEvents:UIControlEventTouchUpInside];
         [tabBarView addSubview:button];
         
         // 添加TabBar底部按钮
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 32 , 80, 8)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 35 , 80, 8)];
         [label setFont:[UIFont fontWithName:@"Helvetica" size:11.0]];
         label.text = [tabBarNames objectAtIndex:i];
         [label setTextAlignment:NSTextAlignmentCenter];

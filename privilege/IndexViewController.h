@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IndexViewController : UIViewController<UIScrollViewDelegate>
-
+@interface IndexViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 
 @end

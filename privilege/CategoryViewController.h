@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryViewController : UIViewController
+@interface CategoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+{
+    @private
+    UITableView *_tableView;
+}
+
+
+@property (nonatomic) NSArray *listArray;
 
 @end

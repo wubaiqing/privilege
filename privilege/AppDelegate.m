@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RenderTabBarViewController.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface AppDelegate ()
@@ -19,6 +20,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 图片缓存
+    SDWebImageManager.sharedManager.cacheKeyFilter = ^(NSURL *url) {
+        url = [[NSURL alloc] initWithScheme:url.scheme host:url.host path:url.path];
+        return [url absoluteString];
+    };
     
     // 设置Window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

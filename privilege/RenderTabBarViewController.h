@@ -17,20 +17,12 @@
 // TabBar的整体高度
 #define customTabBarViewHeight 49
 
-// 每一个TabBar的视图宽度
-#define eachTabBarViewWidth 80
-
-// TabBar -> button 按钮宽度
-#define tabBarImageWidth 49
-
-// TabBar -> button 按钮高度
-#define tabBarImageHeight 49
-
-// TabBar -> TabBar -> button -> margin 按钮间距
-#define tabBarImageMargin 8
 
 
 @interface RenderTabBarViewController : UITabBarController
+{
+    NSArray *tabBarNames;
+}
 
 // 自定义tabBar数组
 @property (nonatomic, strong) NSArray *customTabBarArrays;

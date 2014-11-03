@@ -93,6 +93,7 @@
 		5CD15E3C1A0357C100FAA3A6 /* cat_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD15E331A0357C100FAA3A6 /* cat_7.png */; };
 		5CD15E3D1A0357C100FAA3A6 /* cat_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD15E341A0357C100FAA3A6 /* cat_8.png */; };
 		5CD15E451A03691800FAA3A6 /* Goods.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD15E441A03691800FAA3A6 /* Goods.xib */; };
+		5CD15E471A036C0600FAA3A6 /* net_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD15E461A036C0600FAA3A6 /* net_error@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +249,7 @@
 		5CD15E331A0357C100FAA3A6 /* cat_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_7.png; sourceTree = "<group>"; };
 		5CD15E341A0357C100FAA3A6 /* cat_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_8.png; sourceTree = "<group>"; };
 		5CD15E441A03691800FAA3A6 /* Goods.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Goods.xib; sourceTree = "<group>"; };
+		5CD15E461A036C0600FAA3A6 /* net_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net_error@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,13 +426,15 @@
 			children = (
 				5CA414B319EBDAAE00B72707 /* AppDelegate.h */,
 				5CA414B419EBDAAE00B72707 /* AppDelegate.m */,
-				5CA414B919EBDAAE00B72707 /* Main.storyboard */,
-				5CA414BC19EBDAAE00B72707 /* Images.xcassets */,
 				5CA414E119EBE46000B72707 /* Controllers */,
 				5C31002C19FF39EA00EBF231 /* Models */,
 				5CD15E431A0368F100FAA3A6 /* Views */,
-				5CA414BE19EBDAAE00B72707 /* LaunchScreen.xib */,
+				5C48E39119F10A8E0007B62E /* Lib */,
+				5CA414DF19EBE44700B72707 /* Images */,
 				5CA414AF19EBDAAE00B72707 /* Supporting Files */,
+				5CA414BE19EBDAAE00B72707 /* LaunchScreen.xib */,
+				5CA414B919EBDAAE00B72707 /* Main.storyboard */,
+				5CA414BC19EBDAAE00B72707 /* Images.xcassets */,
 			);
 			path = privilege;
 			sourceTree = "<group>";
@@ -438,8 +442,6 @@
 		5CA414AF19EBDAAE00B72707 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5C48E39119F10A8E0007B62E /* Lib */,
-				5CA414DF19EBE44700B72707 /* Images */,
 				5CA414B019EBDAAE00B72707 /* Info.plist */,
 				5CA414B119EBDAAE00B72707 /* main.m */,
 			);
@@ -466,6 +468,7 @@
 		5CA414DF19EBE44700B72707 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CD15E481A036C0A00FAA3A6 /* System */,
 				5C19E73B19FD42BB00DC05C3 /* Categorys */,
 				5CCEF29E19F0C27800CC52FE /* TabBarButtonList */,
 				5CA414E019EBE45100B72707 /* RootView */,
@@ -580,6 +583,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		5CD15E481A036C0A00FAA3A6 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				5CD15E461A036C0600FAA3A6 /* net_error@2x.png */,
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -673,6 +684,7 @@
 				5CA5388819F949DC002FEF8B /* tabbar_button_1.png in Resources */,
 				5CD15E3D1A0357C100FAA3A6 /* cat_8.png in Resources */,
 				5CA414BB19EBDAAE00B72707 /* Main.storyboard in Resources */,
+				5CD15E471A036C0600FAA3A6 /* net_error@2x.png in Resources */,
 				5CA5388E19F94CD9002FEF8B /* category@2x.png in Resources */,
 				5CD15E3C1A0357C100FAA3A6 /* cat_7.png in Resources */,
 				5CD15E3B1A0357C100FAA3A6 /* cat_6.png in Resources */,

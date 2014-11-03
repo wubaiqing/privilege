@@ -14,14 +14,23 @@
 // 是否是IOS7 的设备
 #define IOS7 [[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0
 
+// 每个TabBar的宽度
+#define customTabBarViewWidth 80
+
 // TabBar的整体高度
 #define customTabBarViewHeight 49
 
 
+// Tabbar 图标TAG
+#define tabbarImageTag = 1000;
+
+// Tabbar 标签TAG
+#define tabbarLabelTag = 2000;
 
 @interface RenderTabBarViewController : UITabBarController
 {
-    NSArray *tabBarNames;
+    // tabbar数量
+    NSArray *tabBarItems;
 }
 
 // 自定义tabBar数组

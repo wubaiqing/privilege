@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IndexViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface IndexViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 {
-    UICollectionView *collectionView;
-   UIActivityIndicatorView *activityView;
+//    UICollectionView *collectionView;
+    UIActivityIndicatorView *activityView;
     UIImageView *networkfileImage;
 }
 

@@ -34,6 +34,12 @@
 # pragma mark 所有导航控制器
 - (void) loadCustomNavigationViewControllers
 {
+    if (IOS7) {
+        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    } else {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+    }
+    
     IndexViewController *index = [[IndexViewController alloc] init];
     UINavigationController *indexNav = [[UINavigationController alloc] initWithRootViewController:index];
     
@@ -77,8 +83,8 @@
     tabBarItems = @[@"首页", @"值得逛", @"最新", @"个人中心"];
     
     // 添加四个TabBar
-    for (int i = 1; i <= tabBarItems.count; i++) {
-        
+    int tag = 1;
+    for (int i = 0; i < tabBarItems.count; i++) {
         // 添加外边框视图，为了让文字和图片居中，宽度80，高度49，Tabbar高度
         UIView *tabBarView = [[UIView alloc] initWithFrame:CGRectMake(tabBarViewCoordinate, 0, customTabBarViewWidth, customTabBarViewHeight)];
         [tabBarView setBackgroundColor:[UIColor whiteColor]]; // 背景颜色
@@ -87,7 +93,7 @@
         // 设置图片位置，以及图片大小
         // 添加自定义tabBar按钮，并加上点击事件
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setTag:i];
+        [button setTag:tag];
         [button setFrame:CGRectMake(customTabBarViewWidth/2 -  30/2, 3, 30, 30)];
         [button addTarget:self action:@selector(clickTabBar:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -96,12 +102,12 @@
         NSString *buttonImage = [NSString stringWithFormat:@"tabbar_button_%d", i];
         NSString *buttonHightlightImage = [NSString stringWithFormat:@"tabbar_button_hightlight_%d", i];
         UIImageView *buttonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:buttonImage] highlightedImage:[UIImage imageNamed:buttonHightlightImage]];
-        [buttonView setTag:1000 + i];
+        [buttonView setTag:1001 + tag];
         [buttonView setFrame:CGRectMake(0, 0, 30, 30)];
         
         // 给tabBar添加文字介绍
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 35 , customTabBarViewWidth, 8)];
-        [label setTag:2000 + i];
+        [label setTag:2001 + tag];
         [label setFont:[UIFont fontWithName:@"Helvetica" size:11.0]];
         [label setText:[tabBarItems objectAtIndex:i]];
         [label setTextAlignment:NSTextAlignmentCenter];
@@ -112,34 +118,58 @@
         [tabBarView addSubview:button];
         [tabBarView addSubview:label];
         [customTabBarImageView addSubview:tabBarView];
+        
+        // tag增加
+        tag += 1;
     }
     
+    
+    
     [self.view addSubview:customTabBarImageView];
+    [self setHightlightTabbar];
+}
+
+
+- (void) setHightlightTabbar
+{
+    int tag = 1;
+    // 清空图片
+    UIImageView *image = ((UIImageView *)[self.view viewWithTag:1001 + tag]);
+    [image setHighlighted:YES];
+    
+    // 修改文字颜色
+    UILabel *label = ((UILabel *)[self.view viewWithTag:2001 + tag]);
+    [label setTextColor:[UIColor redColor]];
+    
 }
 
 # pragma mark 点击TabBar效果
 - (void) clickTabBar:(UIButton *)button
 {
     // 选中选项卡
-    self.selectedIndex = button.tag;
+    self.selectedIndex = button.tag - 1;
     
     // 清空所有选项
+    int tag = 1;
     for (int i = 0; i < tabBarItems.count; i++) {
         // 清空图片
-        UIImageView *getImage = ((UIImageView *)[self.view viewWithTag:1000 + i]);
-        [getImage setHighlighted:NO];
+        UIImageView *image = ((UIImageView *)[self.view viewWithTag:1001 + tag]);
+        [image setHighlighted:NO];
         
         // 清空label
-        UILabel *getLabel = ((UILabel *)[self.view viewWithTag:2000 + i]);
-        [getLabel setTextColor:[UIColor grayColor]];
+        UILabel *label = ((UILabel *)[self.view viewWithTag:2001 + tag]);
+        [label setTextColor:[UIColor grayColor]];
+        
+        // Tag增加
+        tag += 1;
     }
     
     // 清空图片
-    UIImageView *image = ((UIImageView *)[self.view viewWithTag:1000 + button.tag]);
+    UIImageView *image = ((UIImageView *)[self.view viewWithTag:1001 + button.tag]);
     [image setHighlighted:YES];
     
     // 修改文字颜色
-    UILabel *label = ((UILabel *)[self.view viewWithTag:2000 + button.tag]);
+    UILabel *label = ((UILabel *)[self.view viewWithTag:2001 + button.tag]);
     [label setTextColor:[UIColor redColor]];
 }
 

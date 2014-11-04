@@ -11,81 +11,98 @@
 #import "AFNetworking.h"
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
-
-//下拉刷新
 #import "MJRefresh.h"
 
+// 设置cell唯一标示
+static NSString *headerIdentifier = @"HeaderCellIdentifier";
+static NSString *cellIdentifier = @"CellIdentifier";
 
-#pragma mark 生命私有属性
+/**
+ * 全局属性
+ */
 @interface IndexViewController ()
-{
-}
+
+@property (nonatomic, strong) NSMutableArray *goods;
+
 @end
 
 
 #pragma mark 设置私有方法
 @implementation IndexViewController
 
-// 设置cell唯一标示
-static NSString *cellIdentifier = @"CellIdentifier";
-
-
-#pragma mark 载入视图
-- (void) loadView
+/**
+ *  初始化Layout
+ */
+- (id)init
 {
-    // 载入内容
-    [self loadIndex];
-}
-
-
-
-#pragma mark 主题内容
-- (void) loadIndex
-{
-    // 创建视图
-    UIView *indexView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    
-    // 设置Laytous
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(150, 150);
     layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     layout.minimumInteritemSpacing = 5.0;
     layout.minimumLineSpacing = 5.0;
-    
-    // 设置商品
-    collectionView = [[UICollectionView alloc] initWithFrame:indexView.frame collectionViewLayout:layout];
-    UINib *cellNib = [UINib nibWithNibName:@"Goods" bundle:nil];
-    [collectionView registerNib:cellNib forCellWithReuseIdentifier:cellIdentifier];
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-    collectionView.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
-    
-    // 添加下拉刷新头部控件
-    [collectionView addHeaderWithCallback:^{
-            [collectionView reloadData];
-            // 结束刷新
-            [collectionView headerEndRefreshing];
-    } dateKey:nil];
-    
-    // 添加下拉刷新头部控件
-    [collectionView addFooterWithCallback:^{
-            [collectionView reloadData];
-            // 结束刷新
-            [collectionView footerEndRefreshing];
-    }];
-    
-    networkfileImage = [[UIImageView alloc] initWithFrame:CGRectMake(85.5, 110, 149, 101)];
-    [networkfileImage setImage:[UIImage imageNamed:@"net_error.png"]];
-    networkfileImage.hidden = YES;
-    [indexView addSubview:networkfileImage];
-    
-    
-    [indexView addSubview:collectionView];
-    self.view = indexView;
-    
+    return [self initWithCollectionViewLayout:layout];
 }
 
+/**
+ * 初始化视图调用
+ */
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // 初始化collectionView
+    [self setupCollectionView];
+    
+    // 2.集成刷新控件
+    [self headerRefresh];
+    [self footerRedresh];
+}
 
+/**
+ * 初始化collectionView
+ */
+- (void) setupCollectionView
+{
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.alwaysBounceHorizontal = NO;
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier];
+}
+
+/**
+ * 头部区域宽度高度
+ */
+-(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(320, 300);
+}
+
+/**
+ * 设置首页头部区域
+ */
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    view.backgroundColor = [UIColor redColor];
+    
+    [head addSubview:view];
+    
+    
+    return head;
+}
+
+/**
+ * 有多少个数据
+ */
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.goods.count;
+}
+
+/**
+ * 每行数据展示
+ */
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -93,32 +110,81 @@ static NSString *cellIdentifier = @"CellIdentifier";
     cell.contentView.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
     cell.contentView.layer.borderWidth = 0.5;
     cell.contentView.layer.cornerRadius = 3.0f;
-    cell.contentView.clipsToBounds = YES;//父视图clipsToBounds设置为YES，则子视图超过父视图范围则子视图超出范围部分不能显示。
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    
-    UIImageView *images = (UIImageView *)[cell viewWithTag:10001];
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:10002];
-    UILabel *nowpriceLabel = (UILabel *)[cell viewWithTag:10003];
-    UILabel *originpriceLabel = (UILabel *)[cell viewWithTag:10004];
+//    UIImageView *images = (UIImageView *)[cell viewWithTag:10001];
+//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:10002];
+//    UILabel *nowpriceLabel = (UILabel *)[cell viewWithTag:10003];
+//    UILabel *originpriceLabel = (UILabel *)[cell viewWithTag:10004];
     
     //设置图片边
-    images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
-    images.layer.borderWidth = 0.5;
+//    images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
+//    images.layer.borderWidth = 0.5;
     
     //取到某一个商品
 //    [images setImageWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-    titleLabel.text = @"test";
-    nowpriceLabel.text = @"20.0";
-    originpriceLabel.text = [NSString stringWithFormat:@"￥%@", @"wubaiqing"];
+//    titleLabel.text = @"test";
+//    nowpriceLabel.text = @"20.0";
+//    originpriceLabel.text = [NSString stringWithFormat:@"￥%@", @"wubaiqing"];
     
     return cell;
 }
 
-# pragma mark 有多少个Cell
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+/**
+ * 每行数据点击
+ */
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 20;
+    NSLog(@"click");
+}
+
+/**
+ * 上拉刷新
+ */
+- (void)headerRefresh
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.collectionView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView headerEndRefreshing];
+        });
+    } dateKey:@"collection"];
+    // dateKey用于存储刷新时间，也可以不传值，可以保证不同界面拥有不同的刷新时间
+    
+    [self.collectionView headerBeginRefreshing];
+}
+
+/**
+ * 下拉刷新
+ */
+- (void)footerRedresh
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加上拉刷新尾部控件
+    [self.collectionView addFooterWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView footerEndRefreshing];
+        });
+    }];
 }
 
 @end

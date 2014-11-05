@@ -55,12 +55,6 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
 }
 
 
-- (void)loadView
-{
-    [super loadView];
-    
-}
-
 /**
  * 初始化视图调用
  */

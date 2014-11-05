@@ -21,7 +21,7 @@
     // 自定义标题
     [self customTitle];
     
-    self.listArray = @[@"女装", @"居家", @"美食", @"母婴", @"配饰", @"数码", @"男装", @"女鞋", @"文体"];
+    self.listArray = @[@"男装", @"女装", @"居家", @"美食", @"化妆品", @"母婴", @"配饰", @"数码周边", @"文体", @"鞋包"];
     _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GuangViewController : UIViewController
+@interface GuangViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

@@ -8,54 +8,93 @@
 
 #import "GuangViewController.h"
 
+static NSString *cellIdentifier = @"guangCellIdentifier";
+
 @interface GuangViewController ()
+
+@property (nonatomic, strong) NSArray *categoryLists;
 
 @end
 
 @implementation GuangViewController
 
-+ (void) init
+- (id) init
 {
-    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(100, 130);
+    layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
+    layout.minimumInteritemSpacing = 5.0;
+    layout.minimumLineSpacing = 5.0;
+    return [self initWithCollectionViewLayout:layout];
 }
 
-- (void) loadView
+- (void) setupCollectionView
 {
+    self.collectionView.backgroundColor = [UIColor colorWithRed:232/255.0 green:232/255.0 blue:232/255.0 alpha:1];
+    self.collectionView.alwaysBounceHorizontal = NO;
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"Guang" bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
     // 设置标题
     self.title = @"值得逛";
-    
-    // 创建视图
-    UIView *guangView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    guangView.backgroundColor = [UIColor colorWithRed:232/255.0 green:232/255.0 blue:232/255.0 alpha:1];
     
     // 设置tabBar按钮样式
     UITabBarItem *tabBar = [[UITabBarItem alloc] initWithTitle:@"值得逛" image:[UIImage imageNamed:@"shop-red"] tag:2];
     self.tabBarItem = tabBar;
-
     
-    // 载入视图
-    self.view = guangView;
+    _categoryLists = @[@"男装", @"女装", @"居家", @"美食", @"化妆品", @"母婴", @"配饰", @"数码周边", @"文体", @"鞋包"];
+    
+    // 初始化collectionView
+    [self setupCollectionView];
+    
+    
+}
+
+/**
+ * 有多少个数据
+ */
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _categoryLists.count;
+}
+
+/**
+ * 每行数据展示
+ */
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    cell.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
+    cell.contentView.layer.borderWidth = 0.5;
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *images = (UIImageView *)[cell viewWithTag:10010];
+    NSLog(@"%@", images);
+    
+    //设置图片边
+    images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
+    images.layer.borderWidth = 0.5;
+    
+    //取到某一个商品
+//    [images setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guang_%d", (int)indexPath.row]]];
+    [images setImage:[UIImage imageNamed:@"test"]];
+    
+    return cell;
+}
+
+/**
+ * 每行数据点击
+ */
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"click");
 }
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

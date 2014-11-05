@@ -13,9 +13,13 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 
+
 // 设置cell唯一标示
 static NSString *headerIdentifier = @"HeaderCellIdentifier";
 static NSString *cellIdentifier = @"CellIdentifier";
+
+// 首页URL
+static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 
 /**
  * 全局属性
@@ -25,7 +29,7 @@ static NSString *cellIdentifier = @"CellIdentifier";
     UICollectionReusableView *HEAD;
 }
 
-@property (nonatomic, strong) NSMutableArray *goods;
+@property (nonatomic, strong) NSMutableArray *goodsLists;
 
 @end
 
@@ -53,6 +57,9 @@ static NSString *cellIdentifier = @"CellIdentifier";
 {
     [super viewDidLoad];
     
+    // 获取数据
+    [self getData];
+    
     // 加载头部
     [self customTitle];
     
@@ -62,6 +69,36 @@ static NSString *cellIdentifier = @"CellIdentifier";
     // 刷新控件
     [self headerRefresh];
     [self footerRedresh];
+}
+
+/**
+ * 获取网络数据
+ */
+- (void) getData
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:HttpIndexUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSArray *listArray = responseObject[@"data"];
+        
+        for (int i = 0; i < listArray.count; i++) {
+            NSDictionary *listDic = [listArray objectAtIndex:i];
+            // 设置Model
+            Goods *goods = [[Goods alloc] init];
+            goods.tbId = listDic[@"tbId"];
+            goods.title = listDic[@"title"];
+            goods.catId = listDic[@"catId"];
+            goods.clickUrl = listDic[@"click_url"];
+            goods.price = listDic[@"price"];
+            goods.originPrice = listDic[@"originPrice"];
+            goods.imageUrl = listDic[@"image"];
+            [_goodsLists addObject:goods];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"错了");
+    }];
 }
 
 /**
@@ -140,7 +177,6 @@ static NSString *cellIdentifier = @"CellIdentifier";
  */
 - (void) loadHeadCategoryView
 {
-    NSLog(@"test");
     UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(320 / 2-310 /2, 5, 310, 65)];
     
     CGFloat doordinate = 0;
@@ -202,7 +238,6 @@ static NSString *cellIdentifier = @"CellIdentifier";
         } else {
             doordinateWidth = 0;
             doordinateHeight += 90 + 2;
-            
         }
         
         [button addTarget:self action:@selector(clickTopBanner:) forControlEvents:UIControlEventTouchUpInside];
@@ -228,7 +263,7 @@ static NSString *cellIdentifier = @"CellIdentifier";
  */
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.goods.count;
+    return _goodsLists.count;
 }
 
 /**
@@ -317,14 +352,5 @@ static NSString *cellIdentifier = @"CellIdentifier";
         });
     }];
 }
-
-
-- (void)getGoodsList
-{
-    
-    
-}
-
-
 
 @end

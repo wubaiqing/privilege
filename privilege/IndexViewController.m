@@ -13,13 +13,14 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 
+#define LIMIT 20
 
 // 设置cell唯一标示
 static NSString *headerIdentifier = @"HeaderCellIdentifier";
 static NSString *cellIdentifier = @"CellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
+static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
 
 /**
  * 全局属性
@@ -27,9 +28,12 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 @interface IndexViewController ()
 {
     UICollectionReusableView *HEAD;
+    UICollectionViewCell *cell;
 }
 
 @property (nonatomic, strong) NSMutableArray *goodsLists;
+@property (nonatomic, assign) NSInteger page;
+
 
 @end
 
@@ -43,11 +47,18 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 - (id)init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(150, 150);
+    layout.itemSize = CGSizeMake(152.5, 155);
     layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     layout.minimumInteritemSpacing = 5.0;
     layout.minimumLineSpacing = 5.0;
     return [self initWithCollectionViewLayout:layout];
+}
+
+
+- (void)loadView
+{
+    [super loadView];
+    
 }
 
 /**
@@ -57,8 +68,10 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 {
     [super viewDidLoad];
     
+    _page = (int)1;
+    
     // 获取数据
-    [self getData];
+    [self getIndexData:(int)_page isRefreing:0];
     
     // 加载头部
     [self customTitle];
@@ -74,25 +87,40 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 /**
  * 获取网络数据
  */
-- (void) getData
+- (void) getIndexData:(int) page isRefreing:(int) isRefre
 {
+    // 设置URL
+    NSString *url = [NSString stringWithFormat:@"%@%d", HttpIndexUrl, page];
+    // 请求网络
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:HttpIndexUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *jsonData = responseObject[@"data"];
+        _goodsLists = [[NSMutableArray alloc] init];
         
-        NSArray *listArray = responseObject[@"data"];
-        
-        for (int i = 0; i < listArray.count; i++) {
-            NSDictionary *listDic = [listArray objectAtIndex:i];
-            // 设置Model
-            Goods *goods = [[Goods alloc] init];
-            goods.tbId = listDic[@"tbId"];
-            goods.title = listDic[@"title"];
-            goods.catId = listDic[@"catId"];
-            goods.clickUrl = listDic[@"click_url"];
-            goods.price = listDic[@"price"];
-            goods.originPrice = listDic[@"originPrice"];
-            goods.imageUrl = listDic[@"image"];
-            [_goodsLists addObject:goods];
+        if (jsonData.count > 0) {
+            for (int i = 0; i < jsonData.count; i++) {
+                NSDictionary *listDic = [jsonData objectAtIndex:i];
+                // 设置Model
+                Goods *goods = [[Goods alloc] init];
+                goods.tbId = listDic[@"tbId"];
+                goods.title = listDic[@"title"];
+                goods.catId = listDic[@"catId"];
+                goods.clickUrl = listDic[@"click_url"];
+                goods.price = listDic[@"price"];
+                goods.originPrice = listDic[@"originPrice"];
+                goods.imageUrl = listDic[@"image"];
+                [_goodsLists addObject:goods];
+            }
+            
+            [self.collectionView reloadData];
+            if (isRefre > 0) {
+                if (isRefre == 1) {
+                    [self.collectionView headerEndRefreshing];
+                } else {
+                    [self.collectionView footerEndRefreshing];
+                }
+            }
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -147,6 +175,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
     self.collectionView.alwaysBounceHorizontal = NO;
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"Goods" bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
 }
 
 /**
@@ -271,27 +300,27 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
  */
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     cell.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
     cell.contentView.layer.borderWidth = 0.5;
-    cell.contentView.layer.cornerRadius = 3.0f;
-    cell.contentView.backgroundColor = [UIColor colorWithRed:232/255.0 green:232/255.0 blue:232/255.0 alpha:1];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     
-//    UIImageView *images = (UIImageView *)[cell viewWithTag:10001];
-//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:10002];
-//    UILabel *nowpriceLabel = (UILabel *)[cell viewWithTag:10003];
-//    UILabel *originpriceLabel = (UILabel *)[cell viewWithTag:10004];
+    UIImageView *images = (UIImageView *)[cell viewWithTag:10001];
+    UILabel *nowpriceLabel = (UILabel *)[cell viewWithTag:10002];
+    UILabel *originpriceLabel = (UILabel *)[cell viewWithTag:10003];
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:10004];
     
     //设置图片边
-//    images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
-//    images.layer.borderWidth = 0.5;
+    images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
+    images.layer.borderWidth = 0.5;
     
     //取到某一个商品
-//    [images setImageWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-//    titleLabel.text = @"test";
-//    nowpriceLabel.text = @"20.0";
-//    originpriceLabel.text = [NSString stringWithFormat:@"￥%@", @"wubaiqing"];
+    Goods *tmp = [_goodsLists objectAtIndex:indexPath.row];
+    [images sd_setImageWithURL:[NSURL URLWithString:tmp.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    nowpriceLabel.text = tmp.price;
+    originpriceLabel.text = [NSString stringWithFormat:@"￥%@", tmp.originPrice];
+    titleLabel.text = tmp.title;
     
     return cell;
 }
@@ -310,24 +339,15 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 - (void)headerRefresh
 {
     __unsafe_unretained typeof(self) vc = self;
-    // 添加下拉刷新头部控件
-    [self.collectionView addHeaderWithCallback:^{
-        // 进入刷新状态就会回调这个Block
-        
-        // 增加5条假数据
-        for (int i = 0; i<5; i++) {
-        }
-        
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [vc.collectionView reloadData];
-            // 结束刷新
-            [vc.collectionView headerEndRefreshing];
-        });
-    } dateKey:@"collection"];
-    // dateKey用于存储刷新时间，也可以不传值，可以保证不同界面拥有不同的刷新时间
     
-    [self.collectionView headerBeginRefreshing];
+    [self.collectionView addHeaderWithCallback:^{
+        if (vc.page < LIMIT) {
+            [vc getIndexData:(int)vc.page isRefreing:1];
+            vc.page++;
+        } else {
+            [vc.collectionView headerEndRefreshing];
+        }
+    } dateKey:@"collection"];
 }
 
 /**
@@ -336,20 +356,15 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone";
 - (void)footerRedresh
 {
     __unsafe_unretained typeof(self) vc = self;
+    
     // 添加上拉刷新尾部控件
     [self.collectionView addFooterWithCallback:^{
-        // 进入刷新状态就会回调这个Block
-        
-        // 增加5条假数据
-        for (int i = 0; i<5; i++) {
-        }
-        
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [vc.collectionView reloadData];
-            // 结束刷新
+        if (vc.page < LIMIT) {
+            [vc getIndexData:(int)vc.page isRefreing:2];
+            vc.page++;
+        } else {
             [vc.collectionView footerEndRefreshing];
-        });
+        }
     }];
 }
 

@@ -17,35 +17,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // 自定义标题
     [self customTitle];
     
-    // 创建视图
-    UIView *indexView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    indexView.backgroundColor = [UIColor colorWithRed:232/255.0 green:232/255.0 blue:232/255.0 alpha:1];
-    
-    
     self.listArray = @[@"女装", @"居家", @"美食", @"母婴", @"配饰", @"数码", @"男装", @"女鞋", @"文体"];
-    
-    
-    _tableView = [[UITableView alloc] initWithFrame:indexView.frame style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 70;
-    _tableView.separatorColor = [UIColor grayColor];
     
-    _tableView.backgroundColor = [UIColor yellowColor];
-    
-//    [_tableView.tableHeaderView removeFromSuperview];
-//    [_tableView.tableFooterView removeFromSuperview];
-    
-    
-    
-    [indexView addSubview:_tableView];
-    
-    self.view = indexView;
+    self.view = _tableView;
 }
 
 
@@ -67,10 +48,7 @@
     NSString *fontName = _listArray[indexPath.row];
     cell.textLabel.text = fontName;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-    
-    
-    
-    
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"cat_%d", (int)indexPath.row]];
     return cell;
 }
 
@@ -94,21 +72,5 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

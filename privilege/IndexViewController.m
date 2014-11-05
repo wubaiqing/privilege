@@ -21,6 +21,9 @@ static NSString *cellIdentifier = @"CellIdentifier";
  * 全局属性
  */
 @interface IndexViewController ()
+{
+    UICollectionReusableView *HEAD;
+}
 
 @property (nonatomic, strong) NSMutableArray *goods;
 
@@ -50,20 +53,60 @@ static NSString *cellIdentifier = @"CellIdentifier";
 {
     [super viewDidLoad];
     
+    // 加载头部
+    [self customTitle];
+    
     // 初始化collectionView
     [self setupCollectionView];
     
-    // 2.集成刷新控件
+    // 刷新控件
     [self headerRefresh];
     [self footerRedresh];
 }
+
+/**
+ * 自定义标题
+ */
+- (void) customTitle
+{
+    // 设置NavigationBar的透明度
+    self.navigationController.navigationBar.translucent = YES;
+    
+    // 设置标题
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    [imageView setFrame:CGRectMake(0, 0, 100, 35)];
+    
+    // 添加logo
+    self.navigationItem.titleView = imageView;
+    
+    // 导航右侧切换分类
+    UIButton *category = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [category setBackgroundImage:[UIImage imageNamed:@"category"] forState:UIControlStateNormal];
+    [category setFrame:CGRectMake(0, 0, 20, 20)];
+    [category addTarget:self action:@selector(clickCategory) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:category];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    // 从NavgationBar开始算坐标
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+/**
+ * 点击分类
+ */
+- (void) clickCategory
+{
+    CategoryViewController *category = [[CategoryViewController alloc] init];
+    [self.navigationController pushViewController:category animated:YES];
+}
+
 
 /**
  * 初始化collectionView
  */
 - (void) setupCollectionView
 {
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:232/255.0 green:232/255.0 blue:232/255.0 alpha:1];
     self.collectionView.alwaysBounceHorizontal = NO;
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier];
@@ -73,7 +116,7 @@ static NSString *cellIdentifier = @"CellIdentifier";
  * 头部区域宽度高度
  */
 -(CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(320, 300);
+    return CGSizeMake(320, 260);
 }
 
 /**
@@ -81,16 +124,104 @@ static NSString *cellIdentifier = @"CellIdentifier";
  */
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
+    HEAD = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-    view.backgroundColor = [UIColor redColor];
+    // 载入头部部分
+    [self loadHeadCategoryView];
     
-    [head addSubview:view];
+    // 载入Banenr部分
+    [self loadHeadBanner];
     
-    
-    return head;
+    return HEAD;
 }
+
+/**
+ * 加载头部分类选项卡
+ */
+- (void) loadHeadCategoryView
+{
+    NSLog(@"test");
+    UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(320 / 2-310 /2, 5, 310, 65)];
+    
+    CGFloat doordinate = 0;
+    NSArray *array = @[@"女装", @"居家", @"母婴", @"更多"];
+    
+    // 分类
+    for (int i = 0; i < 4; i++) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(doordinate , 0, 77, 65)];
+        [view setBackgroundColor:[UIColor whiteColor]];
+        doordinate += 77.5;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setFrame:CGRectMake(77.5/2 - 40 / 2, 5, 40, 40)];
+        [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"root_top_button_%d", i]] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(clickTopCategory:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:button];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 77, 10)];
+        label.text = [array objectAtIndex:i];
+        label.textAlignment = NSTextAlignmentCenter;
+        [label setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+        [view addSubview:label];
+        
+        [buttonView addSubview:view];
+    }
+    
+    [HEAD addSubview:buttonView];
+}
+
+/**
+ * 点击标题
+ */
+- (void) clickTopCategory:(UIButton *) button
+{
+    NSLog(@"click category");
+}
+
+/**
+ * 载入头部Banner部分
+ */
+- (void) loadHeadBanner
+{
+    UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(320 / 2 - 310 /2, 75, 310, 185)];
+    
+    CGFloat doordinateWidth = 0;
+    CGFloat doordinateHeight = 0;
+    CGFloat width = 153;
+    
+    for (int i = 0; i < 4; i++) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.tag = i;
+        [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"top_banner_%d", i]] forState:UIControlStateNormal];
+        [button setBackgroundColor:[UIColor whiteColor]];
+        
+        
+        [button setFrame:CGRectMake(doordinateWidth, doordinateHeight, width, 90)];
+        if (i % 2 == 0) {
+            doordinateWidth += width + 3;
+        } else {
+            doordinateWidth = 0;
+            doordinateHeight += 90 + 2;
+            
+        }
+        
+        [button addTarget:self action:@selector(clickTopBanner:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [buttonView addSubview:button];
+    }
+    
+    [HEAD addSubview:buttonView];
+}
+
+/**
+ * 点击Banner
+ */
+- (void) clickTopBanner:(UIButton *)button
+{
+    NSLog(@"test");
+}
+
+
 
 /**
  * 有多少个数据
@@ -107,10 +238,10 @@ static NSString *cellIdentifier = @"CellIdentifier";
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    cell.contentView.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
+    cell.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
     cell.contentView.layer.borderWidth = 0.5;
     cell.contentView.layer.cornerRadius = 3.0f;
-    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:232/255.0 green:232/255.0 blue:232/255.0 alpha:1];
     
 //    UIImageView *images = (UIImageView *)[cell viewWithTag:10001];
 //    UILabel *titleLabel = (UILabel *)[cell viewWithTag:10002];
@@ -186,5 +317,14 @@ static NSString *cellIdentifier = @"CellIdentifier";
         });
     }];
 }
+
+
+- (void)getGoodsList
+{
+    
+    
+}
+
+
 
 @end

@@ -80,7 +80,7 @@
     CGFloat tabBarViewCoordinate= 0;
     
     // tabBar名称
-    tabBarItems = @[@"首页", @"值得逛", @"最新", @"个人中心"];
+    tabBarItems = @[@"首页", @"值得逛", @"最新", @"关于我们"];
     
     // 添加四个TabBar
     int tag = 1;

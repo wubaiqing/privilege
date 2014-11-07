@@ -50,7 +50,7 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
     
     // 初始化collectionView
     [self setupCollectionView];
-    
+ 
     
 }
 
@@ -81,8 +81,7 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
     images.layer.borderWidth = 0.5;
     
     //取到某一个商品
-//    [images setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guang_%d", (int)indexPath.row]]];
-    [images setImage:[UIImage imageNamed:@"test"]];
+    [images setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guang_%d", (int)indexPath.row]]];
     
     return cell;
 }

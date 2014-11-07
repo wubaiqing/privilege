@@ -12,13 +12,14 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 
+
+#define LIMIT 20
+
 // cellId
 static NSString *cellIdentifier = @"newCellIdentifier";
 
 // 首页URL
 static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
-
-
 
 
 @interface NowViewController ()
@@ -49,13 +50,19 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
     [self getIndexData:(int)_page isRefreing:0];
     
     
+    // 刷新控件
+    [self headerRefresh];
+    
+    [self footerRedresh];
+    
+    
 }
 
 - (id) init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(140, 180);
-    layout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    layout.itemSize = CGSizeMake(152.5, 155);
+    layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     layout.minimumInteritemSpacing = 5.0;
     layout.minimumLineSpacing = 5.0;
     return [self initWithCollectionViewLayout:layout];
@@ -89,16 +96,21 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
     cell.contentView.layer.borderWidth = 0.5;
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *images = (UIImageView *)[cell viewWithTag:10010];
-    NSLog(@"%@", images);
+    UIImageView *images = (UIImageView *)[cell viewWithTag:10001];
+    UILabel *nowpriceLabel = (UILabel *)[cell viewWithTag:10002];
+    UILabel *originpriceLabel = (UILabel *)[cell viewWithTag:10003];
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:10004];
     
     //设置图片边
     images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
     images.layer.borderWidth = 0.5;
     
-    //取到某一个商品
-    //    [images setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guang_%d", (int)indexPath.row]]];
-    [images setImage:[UIImage imageNamed:@"test"]];
+    
+    Goods *tmp = [_goodsLists objectAtIndex:indexPath.row];
+    [images sd_setImageWithURL:[NSURL URLWithString:tmp.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    nowpriceLabel.text = tmp.price;
+    originpriceLabel.text = [NSString stringWithFormat:@"￥%@", tmp.originPrice];
+    titleLabel.text = tmp.title;
     
     return cell;
 }
@@ -157,5 +169,40 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
     }];
 }
 
+
+/**
+ * 上拉刷新
+ */
+- (void)headerRefresh
+{
+    __unsafe_unretained typeof(self) vc = self;
+    
+    [self.collectionView addHeaderWithCallback:^{
+        if (vc.page < LIMIT) {
+            [vc getIndexData:(int)vc.page isRefreing:1];
+            vc.page++;
+        } else {
+            [vc.collectionView headerEndRefreshing];
+        }
+    } dateKey:@"collection"];
+}
+
+/**
+ * 下拉刷新
+ */
+- (void)footerRedresh
+{
+    __unsafe_unretained typeof(self) vc = self;
+    
+    // 添加上拉刷新尾部控件
+    [self.collectionView addFooterWithCallback:^{
+        if (vc.page < LIMIT) {
+            [vc getIndexData:(int)vc.page isRefreing:2];
+            vc.page++;
+        } else {
+            [vc.collectionView footerEndRefreshing];
+        }
+    }];
+}
 
 @end

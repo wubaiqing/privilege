@@ -12,6 +12,8 @@
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
+#import "DetailViewController.h"
+
 
 #define LIMIT 20
 
@@ -234,7 +236,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
  */
 - (void) clickTopCategory:(UIButton *) button
 {
-    NSLog(@"click category");
+    
 }
 
 /**
@@ -324,7 +326,10 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
  */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"click");
+    Goods *goods = [_goodsLists objectAtIndex:indexPath.row];
+    DetailViewController *detail = [[DetailViewController alloc] init];
+    detail.goodsUrl = goods.clickUrl;
+    [self.navigationController pushViewController:detail animated:NO];
 }
 
 /**

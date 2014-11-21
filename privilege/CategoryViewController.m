@@ -52,8 +52,6 @@
     return cell;
 }
 
-
-
 - (void) customTitle
 {
     self.tabBarController.hidesBottomBarWhenPushed = YES;

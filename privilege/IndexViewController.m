@@ -13,6 +13,9 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 #import "DetailViewController.h"
+#import "RenderTabBarViewController.h"
+#import "BannerViewController.h"
+#import "CategoryDetailViewController.h"
 
 
 #define LIMIT 20
@@ -214,6 +217,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
         doordinate += 77.5;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.tag = 100 + i;
         [button setFrame:CGRectMake(77.5/2 - 40 / 2, 5, 40, 40)];
         [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"root_top_button_%d", i]] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickTopCategory:) forControlEvents:UIControlEventTouchUpInside];
@@ -236,7 +240,14 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
  */
 - (void) clickTopCategory:(UIButton *) button
 {
-    
+    int more = (int) button.tag;
+    if (more == 103) {
+        [self clickCategory];
+    } else {
+        CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
+        categoryDetail.type = [NSString stringWithFormat:@"%d", more];
+        [self.navigationController pushViewController:categoryDetail animated:NO];
+    }
 }
 
 /**
@@ -252,7 +263,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
     
     for (int i = 0; i < 4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.tag = i;
+        button.tag = 50 + i;
         [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"top_banner_%d", i]] forState:UIControlStateNormal];
         [button setBackgroundColor:[UIColor whiteColor]];
         
@@ -278,7 +289,10 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
  */
 - (void) clickTopBanner:(UIButton *)button
 {
-    NSLog(@"test");
+    BannerViewController *banner = [[BannerViewController alloc] init];
+    banner.bannerId = [NSString stringWithFormat:@"%d", (int) button.tag];
+    NSLog(@"%@", banner.bannerId);
+    [self.navigationController pushViewController:banner animated:NO];
 }
 
 
@@ -365,6 +379,13 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
             [vc.collectionView footerEndRefreshing];
         }
     }];
+}
+
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController showTabBar];
 }
 
 @end

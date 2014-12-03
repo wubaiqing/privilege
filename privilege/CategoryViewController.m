@@ -8,6 +8,7 @@
 
 #import "CategoryViewController.h"
 #import "IndexViewController.h"
+#import "RenderTabBarViewController.h"
 
 @interface CategoryViewController ()
 
@@ -20,6 +21,11 @@
     
     // 自定义标题
     [self customTitle];
+    
+    
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController hideTabBar];
+    
     
     self.listArray = @[@"男装", @"女装", @"居家", @"美食", @"化妆品", @"母婴", @"配饰", @"数码周边", @"文体", @"鞋包"];
     _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];

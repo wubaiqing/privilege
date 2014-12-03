@@ -15,6 +15,9 @@
 #import "UserCenterViewController.h"// 个人中心
 
 @interface RenderTabBarViewController ()
+{
+    UIView *customTabBarImageView;
+}
 
 @end
 
@@ -62,8 +65,6 @@
 {
     // 隐藏系统自带tabBar
     self.tabBar.hidden = YES;
-    
-    UIView *customTabBarImageView;
     
     // 自定义TabBar位置，兼容iphone5，不兼容通话模式
     if (iPhone5) {
@@ -142,6 +143,20 @@
     [label setTextColor:[UIColor redColor]];
     
 }
+
+
+- (void) showTabBar
+{
+    customTabBarImageView.hidden = NO;
+}
+
+- (void) hideTabBar
+{
+    customTabBarImageView.hidden = YES;
+}
+
+
+
 
 # pragma mark 点击TabBar效果
 - (void) clickTabBar:(UIButton *)button

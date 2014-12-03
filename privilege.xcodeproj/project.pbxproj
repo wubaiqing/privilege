@@ -49,6 +49,8 @@
 		5C48E3EB19F136140007B62E /* top_banner_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C48E3E719F136140007B62E /* top_banner_1@2x.png */; };
 		5C48E3EC19F136140007B62E /* top_banner_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C48E3E819F136140007B62E /* top_banner_2@2x.png */; };
 		5C48E3ED19F136140007B62E /* top_banner_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C48E3E919F136140007B62E /* top_banner_3@2x.png */; };
+		5C4A0C6D1A2F500A001E75B7 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4A0C6C1A2F500A001E75B7 /* BannerViewController.m */; };
+		5C4A0C701A2F5D0B001E75B7 /* CategoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4A0C6F1A2F5D0B001E75B7 /* CategoryDetailViewController.m */; };
 		5C67F9BA19F0FB560038AF00 /* root_top_button_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C67F9B619F0FB560038AF00 /* root_top_button_0@2x.png */; };
 		5C67F9BB19F0FB560038AF00 /* root_top_button_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C67F9B719F0FB560038AF00 /* root_top_button_1@2x.png */; };
 		5C67F9BC19F0FB560038AF00 /* root_top_button_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C67F9B819F0FB560038AF00 /* root_top_button_2@2x.png */; };
@@ -201,6 +203,10 @@
 		5C48E3E719F136140007B62E /* top_banner_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_banner_1@2x.png"; sourceTree = "<group>"; };
 		5C48E3E819F136140007B62E /* top_banner_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_banner_2@2x.png"; sourceTree = "<group>"; };
 		5C48E3E919F136140007B62E /* top_banner_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_banner_3@2x.png"; sourceTree = "<group>"; };
+		5C4A0C6B1A2F500A001E75B7 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		5C4A0C6C1A2F500A001E75B7 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
+		5C4A0C6E1A2F5D0B001E75B7 /* CategoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryDetailViewController.h; sourceTree = "<group>"; };
+		5C4A0C6F1A2F5D0B001E75B7 /* CategoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryDetailViewController.m; sourceTree = "<group>"; };
 		5C67F9B619F0FB560038AF00 /* root_top_button_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "root_top_button_0@2x.png"; sourceTree = "<group>"; };
 		5C67F9B719F0FB560038AF00 /* root_top_button_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "root_top_button_1@2x.png"; sourceTree = "<group>"; };
 		5C67F9B819F0FB560038AF00 /* root_top_button_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "root_top_button_2@2x.png"; sourceTree = "<group>"; };
@@ -534,6 +540,10 @@
 				5CCEF29C19F0B91100CC52FE /* RenderTabBarViewController.m */,
 				5C0296FF1A1B288100C00619 /* DetailViewController.h */,
 				5C0297001A1B288100C00619 /* DetailViewController.m */,
+				5C4A0C6B1A2F500A001E75B7 /* BannerViewController.h */,
+				5C4A0C6C1A2F500A001E75B7 /* BannerViewController.m */,
+				5C4A0C6E1A2F5D0B001E75B7 /* CategoryDetailViewController.h */,
+				5C4A0C6F1A2F5D0B001E75B7 /* CategoryDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -820,11 +830,13 @@
 				5C31006219FF6E8100EBF231 /* MKAnnotationView+WebCache.m in Sources */,
 				5C31006319FF6E8100EBF231 /* NSData+ImageContentType.m in Sources */,
 				5C31006B19FF6E8100EBF231 /* UIButton+WebCache.m in Sources */,
+				5C4A0C701A2F5D0B001E75B7 /* CategoryDetailViewController.m in Sources */,
 				5C31007019FF6E8100EBF231 /* UIImageView+WebCache.m in Sources */,
 				5CC1773219FF82DE00EE9E77 /* MJRefreshBaseView.m in Sources */,
 				5CC1773519FF82DE00EE9E77 /* MJRefreshHeaderView.m in Sources */,
 				5CA414B219EBDAAE00B72707 /* main.m in Sources */,
 				5CA414D719EBDC3E00B72707 /* IndexViewController.m in Sources */,
+				5C4A0C6D1A2F500A001E75B7 /* BannerViewController.m in Sources */,
 				5CC1773819FF82DE00EE9E77 /* UIView+MJExtension.m in Sources */,
 				5C31006C19FF6E8100EBF231 /* UIImage+GIF.m in Sources */,
 				5C31006719FF6E8100EBF231 /* SDWebImageDownloader.m in Sources */,

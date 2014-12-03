@@ -30,9 +30,13 @@
 {
     // tabbar数量
     NSArray *tabBarItems;
+    
 }
 
 // 自定义tabBar数组
 @property (nonatomic, strong) NSArray *customTabBarArrays;
+
+- (void) showTabBar;
+- (void) hideTabBar;
 
 @end

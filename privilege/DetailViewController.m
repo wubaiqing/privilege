@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "RenderTabBarViewController.h"
 
 @implementation DetailViewController
 
@@ -14,7 +15,11 @@
 {
     [super viewDidLoad];
     
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController hideTabBar];
+    
     [self customTitle];
+    self.hidesBottomBarWhenPushed = YES;
     
     webView = [[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     webView.delegate = self;
@@ -23,6 +28,7 @@
     
     //加载数据
     [self loadWebPageWithString:self.goodsUrl];
+    
 }
 
 - (void)loadWebPageWithString:(NSString *)goodsUrl

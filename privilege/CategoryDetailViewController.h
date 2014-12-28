@@ -11,5 +11,7 @@
 @interface CategoryDetailViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, retain) NSString *type;
+@property int catId;
+
 
 @end

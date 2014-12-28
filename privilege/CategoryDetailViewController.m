@@ -44,6 +44,10 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
     RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
     [tabBarController hideTabBar];
     
+    NSDictionary *dics = [NSDictionary dictionaryWithObjectsAndKeys:@"男装", @"100", @"女装", @"101", @"居家", @"102", @"美食", @"103", @"化妆品", @"104", @"母婴", @"105", @"配饰", @"106", @"数码周边", @"107", @"文体", @"108", @"鞋包", @"109", nil];
+    
+    self.title = [dics objectForKey:[NSString stringWithFormat:@"%d", _catId]];
+    
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [backButton setFrame:CGRectMake(0, 0, 20, 20)];
@@ -69,7 +73,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
 
 - (void) returnRootView
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id) init
@@ -146,6 +150,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
  */
 - (void) getIndexData:(int) page isRefreing:(int) isRefre
 {
+    
     // 设置URL
     NSString *url = [NSString stringWithFormat:@"%@%d/type/%@", HttpIndexUrl, page, _type];
     NSLog(@"%@", url);
@@ -221,6 +226,12 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
             [vc.collectionView footerEndRefreshing];
         }
     }];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController hideTabBar];
 }
 
 @end

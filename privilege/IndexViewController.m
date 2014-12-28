@@ -246,6 +246,21 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
     } else {
         CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
         categoryDetail.type = [NSString stringWithFormat:@"%d", more];
+        
+        int intVal = (int) button.tag,
+            catId = 0;
+        
+        if (intVal == 100) {
+            catId = 101;
+        } else if (intVal == 101){
+            catId = 102;
+        } else {
+            catId = 105;
+        }
+        
+        categoryDetail.catId = catId;
+        
+        
         [self.navigationController pushViewController:categoryDetail animated:NO];
     }
 }

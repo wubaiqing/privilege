@@ -9,6 +9,7 @@
 #import "CategoryViewController.h"
 #import "IndexViewController.h"
 #import "RenderTabBarViewController.h"
+#import "CategoryDetailViewController.h"
 
 @interface CategoryViewController ()
 
@@ -21,7 +22,6 @@
     
     // 自定义标题
     [self customTitle];
-    
     
     RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
     [tabBarController hideTabBar];
@@ -72,9 +72,27 @@
 }
 
 
+
 - (void) returnRootView
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController hideTabBar];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
+    NSString *catId = [NSString stringWithFormat:@"10%d", (int) indexPath.row];
+    categoryDetail.type = [NSString stringWithFormat:@"%d", [catId intValue]];
+    categoryDetail.catId = [catId intValue];
+    [self.navigationController pushViewController:categoryDetail animated:NO];
+    
 }
 
 @end

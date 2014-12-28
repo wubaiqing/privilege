@@ -11,6 +11,8 @@
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
+#import "DetailViewController.h"
+#import "RenderTabBarViewController.h"
 
 
 #define LIMIT 20
@@ -120,7 +122,10 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
  */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"click");
+    Goods *goods = [_goodsLists objectAtIndex:indexPath.row];
+    DetailViewController *detail = [[DetailViewController alloc] init];
+    detail.goodsUrl = goods.clickUrl;
+    [self.navigationController pushViewController:detail animated:NO];
 }
 
 
@@ -203,6 +208,12 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
             [vc.collectionView footerEndRefreshing];
         }
     }];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController showTabBar];
 }
 
 @end

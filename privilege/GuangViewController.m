@@ -7,6 +7,8 @@
 //
 
 #import "GuangViewController.h"
+#import "RenderTabBarViewController.h"
+#import "CategoryDetailViewController.h"
 
 static NSString *cellIdentifier = @"guangCellIdentifier";
 
@@ -74,7 +76,6 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
     UIImageView *images = (UIImageView *)[cell viewWithTag:10010];
-    NSLog(@"%@", images);
     
     //设置图片边
     images.layer.borderColor = [UIColor colorWithRed:197.0/255.0 green:197.0/255.0 blue:197.0/255.0 alpha:1.0].CGColor;
@@ -91,9 +92,20 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
  */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"click");
+    CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
+    NSString *catId = [NSString stringWithFormat:@"10%d", (int) indexPath.row];
+    categoryDetail.type = [NSString stringWithFormat:@"%d", [catId intValue]];
+    categoryDetail.catId = [catId intValue];
+    [self.navigationController pushViewController:categoryDetail animated:NO];
+    
 }
 
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    [tabBarController showTabBar];
+}
 
 
 @end

@@ -21,7 +21,7 @@
 static NSString *cellIdentifier = @"categoryDetailCellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
+static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 
 
 @interface CategoryDetailViewController ()

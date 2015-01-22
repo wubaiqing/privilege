@@ -21,7 +21,7 @@
 static NSString *cellIdentifier = @"bannerCellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
+static NSString *HttpIndexUrl;
 
 
 @interface BannerViewController ()
@@ -44,12 +44,16 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
     // 设置标题
     if ([_bannerId intValue] == 50) {
         self.title = @"9.9包邮专区";
+        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/type/9/page/";
     } else if ([_bannerId intValue] == 51) {
         self.title = @"20元封顶";
+        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/type/20/page/";
     } else if ([_bannerId intValue] == 52) {
         self.title = @"达人精选";
+        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/page/";
     } else {
         self.title = @"最新更新";
+        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/search/new/page/";
     }
     
     RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
@@ -86,7 +90,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
 - (id) init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(152.5, 155);
+    layout.itemSize = CGSizeMake(152.5, 200);
     layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     layout.minimumInteritemSpacing = 5.0;
     layout.minimumLineSpacing = 5.0;
@@ -158,7 +162,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
 - (void) getIndexData:(int) page isRefreing:(int) isRefre
 {
     // 设置URL
-    NSString *url = [NSString stringWithFormat:@"%@%d/banner/%@", HttpIndexUrl, page, _bannerId];
+    NSString *url = [NSString stringWithFormat:@"%@%d", HttpIndexUrl, page];
     // 请求网络
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

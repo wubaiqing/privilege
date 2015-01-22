@@ -10,8 +10,8 @@
 		5C0297011A1B288100C00619 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0297001A1B288100C00619 /* DetailViewController.m */; };
 		5C0FBCE91A6F48D800B96665 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0FBCE81A6F48D800B96665 /* Launch Screen.xib */; };
 		5C0FBCEB1A6F49F800B96665 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C0FBCEA1A6F49F800B96665 /* Images.xcassets */; };
-		5C1450A41A70C95000843366 /* 120-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1450A21A70C95000843366 /* 120-120.png */; };
-		5C1450A51A70C95000843366 /* 180-180.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1450A31A70C95000843366 /* 180-180.png */; };
+		5C1450A81A70E2E300843366 /* 180-180.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1450A61A70E2E300843366 /* 180-180.png */; };
+		5C1450A91A70E2E300843366 /* 120-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1450A71A70E2E300843366 /* 120-120.png */; };
 		5C31002F19FF3A0900EBF231 /* Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C31002E19FF3A0900EBF231 /* Goods.m */; };
 		5C31006219FF6E8100EBF231 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C31004219FF6E8100EBF231 /* MKAnnotationView+WebCache.m */; };
 		5C31006319FF6E8100EBF231 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C31004419FF6E8100EBF231 /* NSData+ImageContentType.m */; };
@@ -135,8 +135,8 @@
 		5C0297001A1B288100C00619 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		5C0FBCE81A6F48D800B96665 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		5C0FBCEA1A6F49F800B96665 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5C1450A21A70C95000843366 /* 120-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "120-120.png"; sourceTree = "<group>"; };
-		5C1450A31A70C95000843366 /* 180-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "180-180.png"; sourceTree = "<group>"; };
+		5C1450A61A70E2E300843366 /* 180-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "180-180.png"; sourceTree = "<group>"; };
+		5C1450A71A70E2E300843366 /* 120-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "120-120.png"; sourceTree = "<group>"; };
 		5C31002D19FF3A0900EBF231 /* Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goods.h; sourceTree = "<group>"; };
 		5C31002E19FF3A0900EBF231 /* Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goods.m; sourceTree = "<group>"; };
 		5C31004119FF6E8100EBF231 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -660,8 +660,8 @@
 		5CD15E481A036C0A00FAA3A6 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				5C1450A21A70C95000843366 /* 120-120.png */,
-				5C1450A31A70C95000843366 /* 180-180.png */,
+				5C1450A61A70E2E300843366 /* 180-180.png */,
+				5C1450A71A70E2E300843366 /* 120-120.png */,
 				5C625AC41A6D145200EDDE1B /* 640-960.png */,
 				5C625AC51A6D145200EDDE1B /* 640-1136.png */,
 				5CCDB7671A4FDCB9005488F4 /* qq@2x.png */,
@@ -797,13 +797,14 @@
 				5CF89A381A0A3883001C2513 /* placeholder.png in Resources */,
 				5C67F9BC19F0FB560038AF00 /* root_top_button_2@2x.png in Resources */,
 				5C0FBCE91A6F48D800B96665 /* Launch Screen.xib in Resources */,
+				5C1450A91A70E2E300843366 /* 120-120.png in Resources */,
 				5CF25EFF1A0B636700775E82 /* guang_7.png in Resources */,
 				5CF89A761A0A59A5001C2513 /* cat_8.png in Resources */,
 				5CF89A701A0A59A5001C2513 /* cat_2.png in Resources */,
 				5CCDB7681A4FDCB9005488F4 /* qq@2x.png in Resources */,
-				5C1450A51A70C95000843366 /* 180-180.png in Resources */,
 				5C625AC71A6D145200EDDE1B /* 640-1136.png in Resources */,
 				5C72E5EE1A0763290022BE28 /* tabbar_button_2.png in Resources */,
+				5C1450A81A70E2E300843366 /* 180-180.png in Resources */,
 				5C72E5F11A0763290022BE28 /* tabbar_button_hightlight_1.png in Resources */,
 				5C72E5F21A0763290022BE28 /* tabbar_button_hightlight_2.png in Resources */,
 				5CC13CBD19F408410010A52F /* logo@2x.png in Resources */,
@@ -812,7 +813,6 @@
 				5C72E5F71A07696E0022BE28 /* tabbar_button_hightlight_0.png in Resources */,
 				5CF89A6E1A0A59A5001C2513 /* cat_0.png in Resources */,
 				5CF25EFB1A0B636700775E82 /* guang_3.png in Resources */,
-				5C1450A41A70C95000843366 /* 120-120.png in Resources */,
 				5CA5388C19F94A4B002FEF8B /* back@2x.png in Resources */,
 				5C72E5F61A07696E0022BE28 /* tabbar_button_0.png in Resources */,
 				5CD15E451A03691800FAA3A6 /* Goods.xib in Resources */,
@@ -1012,7 +1012,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = privilege/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1026,7 +1026,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = privilege/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

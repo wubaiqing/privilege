@@ -43,7 +43,7 @@
     
     UILabel *version = [[UILabel alloc] initWithFrame:CGRectMake(320/2 - 180/2 , 180, 180, 50)];
     [version setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
-    [version setText:@"V0.0.1 (build 1)"];
+    [version setText:@"V0.0.1 (build 0.0.1)"];
     [version setTextAlignment:NSTextAlignmentCenter];
     [version setTextColor:[UIColor blackColor]];
     [top addSubview:version];

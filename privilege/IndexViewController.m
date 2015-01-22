@@ -49,7 +49,7 @@ static NSString *headerIdentifier = @"HeaderCellIdentifier";
 static NSString *cellIdentifier = @"CellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
+static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 
 /**
  * 全局属性

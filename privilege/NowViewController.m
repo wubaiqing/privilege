@@ -21,7 +21,7 @@
 static NSString *cellIdentifier = @"newCellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/search/new/page/";
+static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/search/new/page/";
 
 
 @interface NowViewController ()

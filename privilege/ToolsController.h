@@ -26,7 +26,7 @@
 // Tabbar 标签TAG
 #define tabbarLabelTag = 2000;
 
-@interface RenderTabBarViewController : UITabBarController
+@interface ToolsController : UITabBarController
 {
     // tabbar数量
     NSArray *tabBarItems;

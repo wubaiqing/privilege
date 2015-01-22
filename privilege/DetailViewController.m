@@ -7,7 +7,7 @@
 //
 
 #import "DetailViewController.h"
-#import "RenderTabBarViewController.h"
+#import "TabBarController.h"
 
 @implementation DetailViewController
 

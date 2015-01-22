@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "UserCenterViewController.h"
+#import "AboutController.h"
 
-@interface UserCenterViewController ()
+@interface AboutController ()
 
 @end
 
-@implementation UserCenterViewController
+@implementation AboutController
 
 
 - (void)loadView

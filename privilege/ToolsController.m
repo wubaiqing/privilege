@@ -1,27 +1,23 @@
-//
-//  RenderTabBarViewController.m
-//  privilege
-//
-//  Created by 吴佰清 on 14-10-17.
-//  Copyright (c) 2014年 吴佰清. All rights reserved.
-//
-
-#import "RenderTabBarViewController.h"
+/**
+ * 工具栏菜单
+ * Copyright (c) 2014年 吴佰清. All rights reserved.
+ */
+#import "ToolsController.h"
 
 // 引用视图
-#import "IndexViewController.h"     // 首页
-#import "GuangViewController.h"     // 分类
-#import "NowViewController.h"       // 最新
-#import "UserCenterViewController.h"// 个人中心
+#import "IndexController.h"     // 首页
+#import "GuangController.h"     // 分类
+#import "NewController.h"       // 最新
+#import "AboutController.h"// 个人中心
 
-@interface RenderTabBarViewController ()
+@interface ToolsController ()
 {
     UIView *customTabBarImageView;
 }
 
 @end
 
-@implementation RenderTabBarViewController
+@implementation ToolsController
 
 - (void)viewDidLoad {
     
@@ -39,26 +35,25 @@
 {
     if (IOS7) {
         [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    } else {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     }
     
-    IndexViewController *index = [[IndexViewController alloc] init];
+    IndexController *index = [[IndexController alloc] init];
     UINavigationController *indexNav = [[UINavigationController alloc] initWithRootViewController:index];
     
-    GuangViewController *guang = [[GuangViewController alloc] init];
+    GuangController *guang = [[GuangController alloc] init];
     UINavigationController *guangNav = [[UINavigationController alloc] initWithRootViewController:guang];
     
-    NowViewController *now = [[NowViewController alloc] init];
-    UINavigationController *nowNav = [[UINavigationController alloc] initWithRootViewController:now];
+    NewController *new = [[NewController alloc] init];
+    UINavigationController *newNav = [[UINavigationController alloc] initWithRootViewController:new];
     
-    UserCenterViewController *user = [[UserCenterViewController alloc] init];
-    UINavigationController *userNav = [[UINavigationController alloc] initWithRootViewController:user];
+    AboutController *about = [[AboutController alloc] init];
+    UINavigationController *aboutNav = [[UINavigationController alloc] initWithRootViewController:about];
     
     // 添加视图
-    _customTabBarArrays = @[indexNav, guangNav, nowNav, userNav];
+    _customTabBarArrays = @[indexNav, guangNav, newNav, aboutNav];
     [self setViewControllers:_customTabBarArrays animated:YES];
 }
+
 
 # pragma mark 自定义Tabbar文字和位置
 - (void) loadCustomTabBarViewControllers
@@ -150,12 +145,11 @@
     customTabBarImageView.hidden = NO;
 }
 
+
 - (void) hideTabBar
 {
     customTabBarImageView.hidden = YES;
 }
-
-
 
 
 # pragma mark 点击TabBar效果

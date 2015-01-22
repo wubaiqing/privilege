@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "NowViewController.h"
+#import "NewController.h"
 #import "AFNetworking.h"
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
@@ -24,7 +24,7 @@ static NSString *cellIdentifier = @"newCellIdentifier";
 static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/search/new/page/";
 
 
-@interface NowViewController ()
+@interface NewController ()
 {
     UICollectionViewCell *cell;
 }
@@ -35,7 +35,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/search/new/pag
 @end
 
 
-@implementation NowViewController
+@implementation NewController
 
 - (void)viewDidLoad
 {

@@ -6,19 +6,19 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "GuangViewController.h"
+#import "GuangController.h"
 #import "RenderTabBarViewController.h"
 #import "CategoryDetailViewController.h"
 
 static NSString *cellIdentifier = @"guangCellIdentifier";
 
-@interface GuangViewController ()
+@interface GuangController ()
 
 @property (nonatomic, strong) NSArray *categoryLists;
 
 @end
 
-@implementation GuangViewController
+@implementation GuangController
 
 - (id) init
 {

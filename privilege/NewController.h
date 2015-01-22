@@ -1,5 +1,5 @@
 //
-//  UserViewController.h
+//  NowViewController.h
 //  privilege
 //
 //  Created by 吴佰清 on 14-10-16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserCenterViewController : UIViewController
+@interface NewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

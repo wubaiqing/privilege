@@ -11,7 +11,7 @@
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
-#import "RenderTabBarViewController.h"
+#import "TabBarController.h"
 #import "DetailViewController.h"
 
 

@@ -1,5 +1,5 @@
 //
-//  RootViewController.h
+//  CategoryViewController.h
 //  privilege
 //
 //  Created by 吴佰清 on 14-10-13.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IndexViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
-
+@interface GuangController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

@@ -1,24 +1,23 @@
-//
-//  AppDelegate.m
-//  privilege
-//
-//  Created by 吴佰清 on 14-10-13.
-//  Copyright (c) 2014年 吴佰清. All rights reserved.
-//
+/**
+ * App代理
+ * Copyright (c) 2014年 吴佰清. All rights reserved.
+ */
 
+// 代理
 #import "AppDelegate.h"
-#import "RenderTabBarViewController.h"
+
+// 工具栏
+#import "ToolsController.h"
+
+// 图片缓存
 #import "UIImageView+WebCache.h"
 
-
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
-
-# pragma mark 应用启动执行
+// 应用启动时执行
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // 图片缓存
@@ -27,32 +26,17 @@
         return [url absoluteString];
     };
     
-    // 设置Window
+    // 设置窗口大小、背景颜色
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // 渲染UITabBar基础页面
-    RenderTabBarViewController *renderTabBar = [[RenderTabBarViewController alloc] init];
-    self.window.rootViewController = renderTabBar;
+    // 渲染工具栏页面：首页、值得逛、最新，关于我们
+    ToolsController *tools = [[ToolsController alloc] init];
+    self.window.rootViewController = tools;
     
     // 显示视图
     [self.window makeKeyAndVisible];
     return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
 }
 
 @end

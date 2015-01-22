@@ -22,10 +22,10 @@
 #import "Http.h"
 
 // 自定义TabBar
-#import "RenderTabBarViewController.h"
+#import "ToolsController.h"
 
 // 首页
-#import "IndexViewController.h"
+#import "IndexController.h"
 
 // 首页Banner列表
 #import "BannerViewController.h"
@@ -54,7 +54,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 /**
  * 全局属性
  */
-@interface IndexViewController ()
+@interface IndexController ()
 {
     // 头部Cell
     UICollectionReusableView *headerCell;
@@ -74,7 +74,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 /**
  * 首页实现
  */
-@implementation IndexViewController
+@implementation IndexController
 
 /**
  *  初始化Layout
@@ -428,7 +428,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController showTabBar];
 }
 

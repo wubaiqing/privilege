@@ -7,7 +7,7 @@
 //
 
 #import "CategoryViewController.h"
-#import "IndexViewController.h"
+#import "IndexController.h"
 #import "RenderTabBarViewController.h"
 #import "CategoryDetailViewController.h"
 

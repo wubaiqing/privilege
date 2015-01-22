@@ -19,8 +19,8 @@
 
 
 # pragma mark 应用启动执行
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // 图片缓存
     SDWebImageManager.sharedManager.cacheKeyFilter = ^(NSURL *url) {
         url = [[NSURL alloc] initWithScheme:url.scheme host:url.host path:url.path];

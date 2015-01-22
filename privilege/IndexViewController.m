@@ -6,22 +6,46 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "IndexViewController.h"
-#import "CategoryViewController.h"
+// 网络请求
 #import "AFNetworking.h"
-#import "Goods.h"
-#import "UIImageView+WebCache.h"
+
+// 下拉刷新
 #import "MJRefresh.h"
-#import "DetailViewController.h"
+
+// 图片缓存
+#import "UIImageView+WebCache.h"
+
+// 商品列表
+#import "Goods.h"
+
+// Http请求
+#import "Http.h"
+
+// 自定义TabBar
 #import "RenderTabBarViewController.h"
+
+// 首页
+#import "IndexViewController.h"
+
+// 首页Banner列表
 #import "BannerViewController.h"
+
+// 分类列表
+#import "CategoryViewController.h"
+
+// 分类详情
 #import "CategoryDetailViewController.h"
 
+// 商品详情页
+#import "DetailViewController.h"
 
+// 每页显示商品数量
 #define LIMIT 20
 
-// 设置cell唯一标示
+// 设置头部Cell
 static NSString *headerIdentifier = @"HeaderCellIdentifier";
+
+// 设置Cell
 static NSString *cellIdentifier = @"CellIdentifier";
 
 // 首页URL
@@ -32,18 +56,24 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
  */
 @interface IndexViewController ()
 {
-    UICollectionReusableView *HEAD;
+    // 头部Cell
+    UICollectionReusableView *headerCell;
+    
+    // Cell部
     UICollectionViewCell *cell;
 }
 
+// 商品列表
 @property (nonatomic, strong) NSMutableArray *goodsLists;
-@property (nonatomic, assign) NSInteger page;
 
+// Cell当前页
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
-
-#pragma mark 设置私有方法
+/**
+ * 首页实现
+ */
 @implementation IndexViewController
 
 /**
@@ -52,10 +82,19 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
 - (id)init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(152.5, 155);
+    
+    // 每一个Cell大小
+    layout.itemSize = CGSizeMake(152.5, 200);
+    
+    // 每个Cell插入一个范围
     layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
+    
+    // 最小间距
     layout.minimumInteritemSpacing = 5.0;
+    
+    // 最小行间距
     layout.minimumLineSpacing = 5.0;
+    
     return [self initWithCollectionViewLayout:layout];
 }
 
@@ -67,6 +106,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
 {
     [super viewDidLoad];
     
+    // 初始化当前页
     _page = (int)1;
     
     // 获取数据
@@ -189,7 +229,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
  */
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    HEAD = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
+    headerCell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
     
     // 载入头部部分
     [self loadHeadCategoryView];
@@ -197,7 +237,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
     // 载入Banenr部分
     [self loadHeadBanner];
     
-    return HEAD;
+    return headerCell;
 }
 
 /**
@@ -209,6 +249,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
     
     CGFloat doordinate = 0;
     NSArray *array = @[@"女装", @"居家", @"母婴", @"更多"];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"101", @"0", @"102", @"1", @"105", @"2", @"999", @"3", nil ];
     
     // 分类
     for (int i = 0; i < 4; i++) {
@@ -216,8 +257,9 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
         [view setBackgroundColor:[UIColor whiteColor]];
         doordinate += 77.5;
         
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.tag = 100 + i;
+        button.tag = [[dict objectForKey:[NSString stringWithFormat:@"%d", i]] intValue];
         [button setFrame:CGRectMake(77.5/2 - 40 / 2, 5, 40, 40)];
         [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"root_top_button_%d", i]] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickTopCategory:) forControlEvents:UIControlEventTouchUpInside];
@@ -232,7 +274,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
         [buttonView addSubview:view];
     }
     
-    [HEAD addSubview:buttonView];
+    [headerCell addSubview:buttonView];
 }
 
 /**
@@ -241,26 +283,12 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
 - (void) clickTopCategory:(UIButton *) button
 {
     int more = (int) button.tag;
-    if (more == 103) {
+    if (more == 999) {
         [self clickCategory];
     } else {
         CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
         categoryDetail.type = [NSString stringWithFormat:@"%d", more];
-        
-        int intVal = (int) button.tag,
-            catId = 0;
-        
-        if (intVal == 100) {
-            catId = 101;
-        } else if (intVal == 101){
-            catId = 102;
-        } else {
-            catId = 105;
-        }
-        
-        categoryDetail.catId = catId;
-        
-        
+        categoryDetail.catId = (int) button.tag;
         [self.navigationController pushViewController:categoryDetail animated:NO];
     }
 }
@@ -296,7 +324,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
         [buttonView addSubview:button];
     }
     
-    [HEAD addSubview:buttonView];
+    [headerCell addSubview:buttonView];
 }
 
 /**
@@ -344,6 +372,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
     Goods *tmp = [_goodsLists objectAtIndex:indexPath.row];
     [images sd_setImageWithURL:[NSURL URLWithString:tmp.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     nowpriceLabel.text = tmp.price;
+    
     originpriceLabel.text = [NSString stringWithFormat:@"￥%@", tmp.originPrice];
     titleLabel.text = tmp.title;
     

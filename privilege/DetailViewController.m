@@ -53,7 +53,7 @@
 
 - (void) returnRootView
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

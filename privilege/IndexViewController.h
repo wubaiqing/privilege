@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface IndexViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
-{
-//    UICollectionView *collectionView;
-    UIActivityIndicatorView *activityView;
-    UIImageView *networkfileImage;
-}
 
 
 @end

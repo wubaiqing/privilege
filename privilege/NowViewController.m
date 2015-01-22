@@ -21,7 +21,7 @@
 static NSString *cellIdentifier = @"newCellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
+static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/search/new/page/";
 
 
 @interface NowViewController ()
@@ -63,7 +63,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
 - (id) init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(152.5, 155);
+    layout.itemSize = CGSizeMake(152.5, 200);
     layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     layout.minimumInteritemSpacing = 5.0;
     layout.minimumLineSpacing = 5.0;

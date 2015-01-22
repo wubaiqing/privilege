@@ -21,7 +21,7 @@
 static NSString *cellIdentifier = @"categoryDetailCellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
+static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphone/page/";
 
 
 @interface CategoryDetailViewController ()
@@ -36,6 +36,15 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
 
 
 @implementation CategoryDetailViewController
+
+- (id) realId
+{
+    NSDictionary *dics = [NSDictionary dictionaryWithObjectsAndKeys:@"4", @"100", @"1", @"101", @"5", @"102", @"9", @"103", @"11", @"104", @"6", @"105", @"8", @"106", @"10", @"107", @"12", @"108", @"7", @"109", nil];
+    
+    return [dics objectForKey:[NSString stringWithFormat:@"%d", [_type intValue]]];
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -79,7 +88,7 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
 - (id) init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(152.5, 155);
+    layout.itemSize = CGSizeMake(152.5, 200);
     layout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     layout.minimumInteritemSpacing = 5.0;
     layout.minimumLineSpacing = 5.0;
@@ -150,10 +159,12 @@ static NSString *HttpIndexUrl = @"http://www.meipin.com/api/iphonenew/page/";
  */
 - (void) getIndexData:(int) page isRefreing:(int) isRefre
 {
+   
+    NSString *catId = [self realId];
     
     // 设置URL
-    NSString *url = [NSString stringWithFormat:@"%@%d/type/%@", HttpIndexUrl, page, _type];
-    NSLog(@"%@", url);
+    NSString *url = [NSString stringWithFormat:@"%@%d/catId/%d", HttpIndexUrl, page, [catId intValue]];
+    
     // 请求网络
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

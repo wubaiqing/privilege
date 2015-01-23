@@ -6,16 +6,16 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "CategoryViewController.h"
+#import "CatListController.h"
 #import "IndexController.h"
-#import "RenderTabBarViewController.h"
-#import "CategoryDetailViewController.h"
+#import "ToolsController.h"
+#import "CatDetailController.h"
 
-@interface CategoryViewController ()
+@interface CatListController ()
 
 @end
 
-@implementation CategoryViewController
+@implementation CatListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +23,7 @@
     // 自定义标题
     [self customTitle];
     
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController hideTabBar];
     
     
@@ -80,14 +80,14 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController hideTabBar];
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
+    CatDetailController *categoryDetail = [[CatDetailController alloc] init];
     NSString *catId = [NSString stringWithFormat:@"10%d", (int) indexPath.row];
     categoryDetail.type = [NSString stringWithFormat:@"%d", [catId intValue]];
     categoryDetail.catId = [catId intValue];

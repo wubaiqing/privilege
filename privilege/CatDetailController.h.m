@@ -6,25 +6,25 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "BannerViewController.h"
+#import "CatDetailController.h"
 #import "AFNetworking.h"
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
-#import "TabBarController.h"
-#import "DetailViewController.h"
+#import "ToolsController.h"
+#import "DetailController.h"
 
 
 #define LIMIT 20
 
 // cellId
-static NSString *cellIdentifier = @"bannerCellIdentifier";
+static NSString *cellIdentifier = @"categoryDetailCellIdentifier";
 
 // 首页URL
-static NSString *HttpIndexUrl;
+static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 
 
-@interface BannerViewController ()
+@interface CatDetailController ()
 {
     UICollectionViewCell *cell;
 }
@@ -35,29 +35,27 @@ static NSString *HttpIndexUrl;
 @end
 
 
-@implementation BannerViewController
+@implementation CatDetailController
+
+- (id) realId
+{
+    NSDictionary *dics = [NSDictionary dictionaryWithObjectsAndKeys:@"4", @"100", @"1", @"101", @"5", @"102", @"9", @"103", @"11", @"104", @"6", @"105", @"8", @"106", @"10", @"107", @"12", @"108", @"7", @"109", nil];
+    
+    return [dics objectForKey:[NSString stringWithFormat:@"%d", [_type intValue]]];
+}
+
+
 
 - (void)viewDidLoad
 {
     [super loadView];
     
-    // 设置标题
-    if ([_bannerId intValue] == 50) {
-        self.title = @"9.9包邮专区";
-        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/type/9/page/";
-    } else if ([_bannerId intValue] == 51) {
-        self.title = @"20元封顶";
-        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/type/20/page/";
-    } else if ([_bannerId intValue] == 52) {
-        self.title = @"达人精选";
-        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/page/";
-    } else {
-        self.title = @"最新更新";
-        HttpIndexUrl = @"http://www.jtzdm.com/api/Iphone/search/new/page/";
-    }
-    
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController hideTabBar];
+    
+    NSDictionary *dics = [NSDictionary dictionaryWithObjectsAndKeys:@"男装", @"100", @"女装", @"101", @"居家", @"102", @"美食", @"103", @"化妆品", @"104", @"母婴", @"105", @"配饰", @"106", @"数码周边", @"107", @"文体", @"108", @"鞋包", @"109", nil];
+    
+    self.title = [dics objectForKey:[NSString stringWithFormat:@"%d", _catId]];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
@@ -84,7 +82,7 @@ static NSString *HttpIndexUrl;
 
 - (void) returnRootView
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id) init
@@ -150,7 +148,7 @@ static NSString *HttpIndexUrl;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Goods *goods = [_goodsLists objectAtIndex:indexPath.row];
-    DetailViewController *detail = [[DetailViewController alloc] init];
+    DetailController *detail = [[DetailController alloc] init];
     detail.goodsUrl = goods.clickUrl;
     [self.navigationController pushViewController:detail animated:NO];
 }
@@ -161,8 +159,12 @@ static NSString *HttpIndexUrl;
  */
 - (void) getIndexData:(int) page isRefreing:(int) isRefre
 {
+   
+    NSString *catId = [self realId];
+    
     // 设置URL
-    NSString *url = [NSString stringWithFormat:@"%@%d", HttpIndexUrl, page];
+    NSString *url = [NSString stringWithFormat:@"%@%d/catId/%d", HttpIndexUrl, page, [catId intValue]];
+    
     // 请求网络
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -235,6 +237,12 @@ static NSString *HttpIndexUrl;
             [vc.collectionView footerEndRefreshing];
         }
     }];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
+    [tabBarController hideTabBar];
 }
 
 @end

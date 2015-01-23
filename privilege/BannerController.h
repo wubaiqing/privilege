@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BannerViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BannerController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, retain) NSString *bannerId;
 

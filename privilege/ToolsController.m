@@ -4,14 +4,21 @@
  */
 #import "ToolsController.h"
 
-// 引用视图
-#import "IndexController.h"     // 首页
-#import "GuangController.h"     // 分类
-#import "NewController.h"       // 最新
-#import "AboutController.h"// 个人中心
+// 首页
+#import "IndexController.h"
+
+// 值得逛
+#import "GuangController.h"
+
+// 最新
+#import "NewController.h"
+
+// 关于我们
+#import "AboutController.h"
 
 @interface ToolsController ()
 {
+    // 底部工具栏区域
     UIView *customTabBarImageView;
 }
 
@@ -33,9 +40,7 @@
 # pragma mark 所有导航控制器
 - (void) loadCustomNavigationViewControllers
 {
-    if (IOS7) {
-        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    }
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     
     IndexController *index = [[IndexController alloc] init];
     UINavigationController *indexNav = [[UINavigationController alloc] initWithRootViewController:index];

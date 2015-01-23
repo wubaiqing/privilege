@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryDetailViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CatDetailController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, retain) NSString *type;
 @property int catId;

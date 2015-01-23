@@ -7,8 +7,8 @@
 //
 
 #import "GuangController.h"
-#import "RenderTabBarViewController.h"
-#import "CategoryDetailViewController.h"
+#import "ToolsController.h"
+#import "CatDetailController.h"
 
 static NSString *cellIdentifier = @"guangCellIdentifier";
 
@@ -92,7 +92,7 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
  */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
+    CatDetailController *categoryDetail = [[CatDetailController alloc] init];
     NSString *catId = [NSString stringWithFormat:@"10%d", (int) indexPath.row];
     categoryDetail.type = [NSString stringWithFormat:@"%d", [catId intValue]];
     categoryDetail.catId = [catId intValue];
@@ -103,7 +103,7 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController showTabBar];
 }
 

@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
             endingLineNumber = "326"
-            landmarkName = "-loadHeadBanner"
-            landmarkType = "5">
+            landmarkName = "@implementation IndexController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,7 +25,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "privilege/CategoryDetailViewController.m"
+            filePath = "privilege/CatDetailController.h.m"
             timestampString = "443503810.566212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -57,7 +57,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "privilege/CategoryDetailViewController.m"
+            filePath = "privilege/CatDetailController.h.m"
             timestampString = "443503776.587317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

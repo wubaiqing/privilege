@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface CatListController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 {
     @private
     UITableView *_tableView;

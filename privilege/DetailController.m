@@ -6,16 +6,16 @@
 //  Copyright (c) 2014年 吴佰清. All rights reserved.
 //
 
-#import "DetailViewController.h"
-#import "TabBarController.h"
+#import "DetailController.h"
+#import "ToolsController.h"
 
-@implementation DetailViewController
+@implementation DetailController
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController hideTabBar];
     
     [self customTitle];

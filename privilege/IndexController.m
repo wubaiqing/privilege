@@ -1,10 +1,7 @@
-//
-//  RootViewController.m
-//  privilege
-//
-//  Created by 吴佰清 on 14-10-13.
-//  Copyright (c) 2014年 吴佰清. All rights reserved.
-//
+/**
+ * 首页
+ * Copyright (c) 2014年 吴佰清. All rights reserved.
+ */
 
 // 网络请求
 #import "AFNetworking.h"
@@ -28,16 +25,16 @@
 #import "IndexController.h"
 
 // 首页Banner列表
-#import "BannerViewController.h"
+#import "BannerController.h"
 
 // 分类列表
-#import "CategoryViewController.h"
+#import "CatListController.h"
 
 // 分类详情
-#import "CategoryDetailViewController.h"
+#import "CatDetailController.h"
 
 // 商品详情页
-#import "DetailViewController.h"
+#import "DetailController.h"
 
 // 每页显示商品数量
 #define LIMIT 20
@@ -200,7 +197,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
  */
 - (void) clickCategory
 {
-    CategoryViewController *category = [[CategoryViewController alloc] init];
+    CatListController *category = [[CatListController alloc] init];
     [self.navigationController pushViewController:category animated:YES];
 }
 
@@ -286,7 +283,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
     if (more == 999) {
         [self clickCategory];
     } else {
-        CategoryDetailViewController *categoryDetail = [[CategoryDetailViewController alloc] init];
+        CatDetailController *categoryDetail = [[CatDetailController alloc] init];
         categoryDetail.type = [NSString stringWithFormat:@"%d", more];
         categoryDetail.catId = (int) button.tag;
         [self.navigationController pushViewController:categoryDetail animated:NO];
@@ -332,7 +329,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
  */
 - (void) clickTopBanner:(UIButton *)button
 {
-    BannerViewController *banner = [[BannerViewController alloc] init];
+    BannerController *banner = [[BannerController alloc] init];
     banner.bannerId = [NSString stringWithFormat:@"%d", (int) button.tag];
     NSLog(@"%@", banner.bannerId);
     [self.navigationController pushViewController:banner animated:NO];
@@ -385,7 +382,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Goods *goods = [_goodsLists objectAtIndex:indexPath.row];
-    DetailViewController *detail = [[DetailViewController alloc] init];
+    DetailController *detail = [[DetailController alloc] init];
     detail.goodsUrl = goods.clickUrl;
     [self.navigationController pushViewController:detail animated:NO];
 }

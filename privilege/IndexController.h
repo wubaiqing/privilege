@@ -9,6 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface IndexController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
-
-
 @end

@@ -11,8 +11,8 @@
 #import "Goods.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
-#import "DetailViewController.h"
-#import "RenderTabBarViewController.h"
+#import "DetailController.h"
+#import "ToolsController.h"
 
 
 #define LIMIT 20
@@ -123,7 +123,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/search/new/pag
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Goods *goods = [_goodsLists objectAtIndex:indexPath.row];
-    DetailViewController *detail = [[DetailViewController alloc] init];
+    DetailController *detail = [[DetailController alloc] init];
     detail.goodsUrl = goods.clickUrl;
     [self.navigationController pushViewController:detail animated:NO];
 }
@@ -212,7 +212,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/search/new/pag
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    RenderTabBarViewController *tabBarController= (RenderTabBarViewController *)self.tabBarController;
+    ToolsController *tabBarController= (ToolsController *)self.tabBarController;
     [tabBarController showTabBar];
 }
 

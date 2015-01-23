@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController<UIWebViewDelegate>
+@interface DetailController : UIViewController<UIWebViewDelegate>
 {
     UIWebView *webView;
     UIToolbar *toolBar;

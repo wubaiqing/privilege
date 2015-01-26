@@ -1,5 +1,5 @@
 /**
- * App代理方法
+ * App代理
  * Copyright (c) 2014年 吴佰清. All rights reserved.
  */
 #import <UIKit/UIKit.h>

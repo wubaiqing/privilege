@@ -213,7 +213,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/search/new/pag
 - (void) viewWillAppear:(BOOL)animated
 {
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController showTabBar];
+    [tabBarController showTools];
 }
 
 @end

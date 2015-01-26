@@ -51,7 +51,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
     [super loadView];
     
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController hideTabBar];
+    [tabBarController hiddenTools];
     
     NSDictionary *dics = [NSDictionary dictionaryWithObjectsAndKeys:@"男装", @"100", @"女装", @"101", @"居家", @"102", @"美食", @"103", @"化妆品", @"104", @"母婴", @"105", @"配饰", @"106", @"数码周边", @"107", @"文体", @"108", @"鞋包", @"109", nil];
     
@@ -242,7 +242,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 - (void) viewWillAppear:(BOOL)animated
 {
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController hideTabBar];
+    [tabBarController hiddenTools];
 }
 
 @end

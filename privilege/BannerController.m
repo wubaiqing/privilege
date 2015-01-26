@@ -57,7 +57,7 @@ static NSString *HttpIndexUrl;
     }
     
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController hideTabBar];
+    [tabBarController hiddenTools];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];

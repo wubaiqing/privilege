@@ -24,7 +24,7 @@
     [self customTitle];
     
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController hideTabBar];
+    [tabBarController hiddenTools];
     
     
     self.listArray = @[@"男装", @"女装", @"居家", @"美食", @"化妆品", @"母婴", @"配饰", @"数码周边", @"文体", @"鞋包"];
@@ -81,7 +81,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController hideTabBar];
+    [tabBarController hiddenTools];
 }
 
 

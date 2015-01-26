@@ -16,7 +16,7 @@
     [super viewDidLoad];
     
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController hideTabBar];
+    [tabBarController hiddenTools];
     
     [self customTitle];
     self.hidesBottomBarWhenPushed = YES;

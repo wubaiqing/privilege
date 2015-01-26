@@ -18,7 +18,7 @@
 // Http请求
 #import "Http.h"
 
-// 自定义TabBar
+// 自定义工具栏
 #import "ToolsController.h"
 
 // 首页
@@ -426,7 +426,7 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
 - (void) viewWillAppear:(BOOL)animated
 {
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController showTabBar];
+    [tabBarController showTools];
 }
 
 @end

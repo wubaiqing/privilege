@@ -19,38 +19,45 @@
 @interface ToolsController ()
 {
     // 底部工具栏区域
-    UIView *customTabBarImageView;
+    UIView *toolsView;
+    
+    // 工具栏数量
+    NSArray *toolsItems;
 }
-
 @end
 
 @implementation ToolsController
 
+// 视图载入后执行
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     // 载入所有导航控制器
-    [self loadCustomNavigationViewControllers];
+    [self loadNav];
     
     // 载入所有自定义tabBar
-    [self loadCustomTabBarViewControllers];
+    [self loadTools];
 }
 
-# pragma mark 所有导航控制器
-- (void) loadCustomNavigationViewControllers
+// 设置：首页、值得逛、最新、关于我们页面
+- (void) loadNav
 {
+    // 设置导航栏颜色
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     
+    // 首页
     IndexController *index = [[IndexController alloc] init];
     UINavigationController *indexNav = [[UINavigationController alloc] initWithRootViewController:index];
     
+    // 值得逛
     GuangController *guang = [[GuangController alloc] init];
     UINavigationController *guangNav = [[UINavigationController alloc] initWithRootViewController:guang];
     
+    // 最新
     NewController *new = [[NewController alloc] init];
     UINavigationController *newNav = [[UINavigationController alloc] initWithRootViewController:new];
     
+    // 关于我们
     AboutController *about = [[AboutController alloc] init];
     UINavigationController *aboutNav = [[UINavigationController alloc] initWithRootViewController:about];
     
@@ -60,80 +67,78 @@
 }
 
 
-# pragma mark 自定义Tabbar文字和位置
-- (void) loadCustomTabBarViewControllers
+// 自定义工具栏
+- (void) loadTools
 {
-    // 隐藏系统自带tabBar
+    // 隐藏系统工具栏
     self.tabBar.hidden = YES;
     
     // 自定义TabBar位置，兼容iphone5，不兼容通话模式
     if (iPhone5) {
-        customTabBarImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, customTabBarViewHeight)];
+        toolsView = [[UIView alloc] initWithFrame:CGRectMake(0, 519, 320, toolsHeight)];
     } else {
-        customTabBarImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 431, 320, customTabBarViewHeight)];
+        toolsView = [[UIView alloc] initWithFrame:CGRectMake(0, 431, 320, toolsHeight)];
     }
     
-    // 添加可点击的事件
-    [customTabBarImageView setBackgroundColor:[UIColor whiteColor]];
-    customTabBarImageView.userInteractionEnabled = YES;
+    [toolsView setBackgroundColor:[UIColor whiteColor]];
+    
+    // 可点击的事件
+    toolsView.userInteractionEnabled = YES;
     
     // 按钮偏移
-    CGFloat tabBarViewCoordinate= 0;
+    CGFloat toolsCoordinate= 0;
     
-    // tabBar名称
-    tabBarItems = @[@"首页", @"值得逛", @"最新", @"关于我们"];
+    // 工具栏名称
+    toolsItems = @[@"首页", @"值得逛", @"最新", @"关于我们"];
     
-    // 添加四个TabBar
+    // 添加四个工具栏
     int tag = 1;
-    for (int i = 0; i < tabBarItems.count; i++) {
-        // 添加外边框视图，为了让文字和图片居中，宽度80，高度49，Tabbar高度
-        UIView *tabBarView = [[UIView alloc] initWithFrame:CGRectMake(tabBarViewCoordinate, 0, customTabBarViewWidth, customTabBarViewHeight)];
-        [tabBarView setBackgroundColor:[UIColor whiteColor]]; // 背景颜色
-        tabBarViewCoordinate += customTabBarViewWidth; // 每次偏移80
+    for (int i = 0; i < toolsItems.count; i++) {
         
-        // 设置图片位置，以及图片大小
-        // 添加自定义tabBar按钮，并加上点击事件
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setTag:tag];
-        [button setFrame:CGRectMake(customTabBarViewWidth/2 -  30/2, 3, 30, 30)];
-        [button addTarget:self action:@selector(clickTabBar:) forControlEvents:UIControlEventTouchUpInside];
+        // 添加工具栏按钮
+        UIButton *itemTools = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [itemTools setTag:tag];
+        [itemTools setFrame:CGRectMake(toolsCoordinate, 0, toolsWidth, toolsHeight)];
+        [itemTools addTarget:self action:@selector(clickTools:) forControlEvents:UIControlEventTouchUpInside];
+        [itemTools setBackgroundColor:[UIColor whiteColor]];
         
-        // 添加TabBar图片，默认图片，高亮后的图片
-        // 设置图片大小30*30
-        NSString *buttonImage = [NSString stringWithFormat:@"tabbar_button_%d", i];
-        NSString *buttonHightlightImage = [NSString stringWithFormat:@"tabbar_button_hightlight_%d", i];
-        UIImageView *buttonView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:buttonImage] highlightedImage:[UIImage imageNamed:buttonHightlightImage]];
-        [buttonView setTag:1001 + tag];
-        [buttonView setFrame:CGRectMake(0, 0, 30, 30)];
+        // 每次偏移80
+        toolsCoordinate += toolsWidth;
+        
+        // 添加图片，默认图片，高亮后的图片
+        NSString *image = [NSString stringWithFormat:@"tabbar_button_%d", i];
+        NSString *HightlightImage = [NSString stringWithFormat:@"tabbar_button_hightlight_%d", i];
+        UIImageView *toolsImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:image] highlightedImage:[UIImage imageNamed:HightlightImage]];
+        [toolsImage setTag:1001 + tag];
+        [toolsImage setFrame:CGRectMake(toolsWidth/2 - 30 / 2, 5, 30, 30)];
         
         // 给tabBar添加文字介绍
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 35 , customTabBarViewWidth, 8)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 35 , toolsWidth, 10)];
         [label setTag:2001 + tag];
         [label setFont:[UIFont fontWithName:@"Helvetica" size:11.0]];
-        [label setText:[tabBarItems objectAtIndex:i]];
+        [label setText:[toolsItems objectAtIndex:i]];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setTextColor:[UIColor grayColor]];
         
         // 添加到UITabBarController中
-        [button addSubview:buttonView];
-        [tabBarView addSubview:button];
-        [tabBarView addSubview:label];
-        [customTabBarImageView addSubview:tabBarView];
+        [itemTools addSubview:toolsImage];
+        [itemTools addSubview:label];
+        [toolsView addSubview:itemTools];
         
         // tag增加
         tag += 1;
     }
     
     
-    
-    [self.view addSubview:customTabBarImageView];
-    [self setHightlightTabbar];
+    [self.view addSubview:toolsView];
+    [self setHightlight];
 }
 
-
-- (void) setHightlightTabbar
+// 默认第一个按钮为高亮
+- (void) setHightlight
 {
     int tag = 1;
+    
     // 清空图片
     UIImageView *image = ((UIImageView *)[self.view viewWithTag:1001 + tag]);
     [image setHighlighted:YES];
@@ -141,31 +146,29 @@
     // 修改文字颜色
     UILabel *label = ((UILabel *)[self.view viewWithTag:2001 + tag]);
     [label setTextColor:[UIColor redColor]];
-    
 }
 
-
-- (void) showTabBar
+// 显示工具栏
+- (void) showTools
 {
-    customTabBarImageView.hidden = NO;
+    toolsView.hidden = NO;
 }
 
-
-- (void) hideTabBar
+// 显示工具栏
+- (void) hiddenTools
 {
-    customTabBarImageView.hidden = YES;
+    toolsView.hidden = YES;
 }
 
-
-# pragma mark 点击TabBar效果
-- (void) clickTabBar:(UIButton *)button
+// 点击工具栏
+- (void) clickTools:(UIButton *)button
 {
     // 选中选项卡
     self.selectedIndex = button.tag - 1;
     
     // 清空所有选项
     int tag = 1;
-    for (int i = 0; i < tabBarItems.count; i++) {
+    for (int i = 0; i < toolsItems.count; i++) {
         // 清空图片
         UIImageView *image = ((UIImageView *)[self.view viewWithTag:1001 + tag]);
         [image setHighlighted:NO];
@@ -186,9 +189,5 @@
     UILabel *label = ((UILabel *)[self.view viewWithTag:2001 + button.tag]);
     [label setTextColor:[UIColor redColor]];
 }
-
-
-
-
 
 @end

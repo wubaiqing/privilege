@@ -8,10 +8,10 @@
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : 0)
 
 // 每个TabBar的宽度
-#define customTabBarViewWidth 80
+#define toolsWidth 80
 
 // TabBar的整体高度
-#define customTabBarViewHeight 49
+#define toolsHeight 49
 
 // Tabbar 图标TAG
 #define tabbarImageTag = 1000;
@@ -21,14 +21,12 @@
 
 @interface ToolsController : UITabBarController
 {
-    // 工具栏数量
-    NSArray *tabBarItems;
 }
 
 // 自定义tabBar数组
 @property (nonatomic, strong) NSArray *customTabBarArrays;
 
-- (void) showTabBar;
-- (void) hideTabBar;
+- (void) showTools;
+- (void) hiddenTools;
 
 @end

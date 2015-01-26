@@ -104,7 +104,7 @@ static NSString *cellIdentifier = @"guangCellIdentifier";
 - (void) viewWillAppear:(BOOL)animated
 {
     ToolsController *tabBarController= (ToolsController *)self.tabBarController;
-    [tabBarController showTabBar];
+    [tabBarController showTools];
 }
 
 

@@ -20,13 +20,19 @@
 #define tabbarLabelTag = 2000;
 
 @interface ToolsController : UITabBarController
-{
-}
 
 // 自定义tabBar数组
 @property (nonatomic, strong) NSArray *customTabBarArrays;
 
+
+/**
+ * 显示工具栏
+ */
 - (void) showTools;
+
+/**
+ * 隐藏工具栏
+ */
 - (void) hiddenTools;
 
 @end

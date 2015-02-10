@@ -10,7 +10,6 @@
 
 @interface Http : NSObject
 
-
-//+ (NSMutableArray *) httpRequest:(NSString *)requestUrl collctionView:(UICollectionView *)collectionView currentPage:(int)page isRefreing:(int)isRefre;
++ (void) httpRequest:(NSString *)requestUrl collctionView:(NSObject *)collectionView currentPage:(int)page isRefreing:(int)isRefre;
 
 @end

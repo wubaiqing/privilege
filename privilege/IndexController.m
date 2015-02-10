@@ -24,7 +24,7 @@
 // 首页
 #import "IndexController.h"
 
-// 首页Banner列表
+// 首页顶部广告列表
 #import "BannerController.h"
 
 // 分类列表
@@ -107,7 +107,8 @@ static NSString *HttpIndexUrl = @"http://www.jtzdm.com/api/iphone/page/";
     _page = (int)1;
     
     // 获取数据
-    [self getIndexData:(int)_page isRefreing:0];
+//    [self getIndexData:(int)_page isRefreing:0];
+    [Http httpRequest:HttpIndexUrl collctionView:self.collectionView currentPage:(int)_page isRefreing:0];
     
     // 加载头部
     [self customTitle];
